@@ -126,7 +126,6 @@ public class UsuarioServiceImp implements IUsuarioService {
 				lista.add(cr);
 			});
 			
-			//rpta = repo.validaAccesoDNIUsuario(login.getDni(), login.getLogin(), passwordEncriptado).isEmpty() ? 0 : 1;
 		} else {
 			repo.validaAccesoDNICorreo(login.getDni(), login.getCorreo(), passwordEncriptado).forEach(x -> {
 				Usuario cr = new Usuario();
