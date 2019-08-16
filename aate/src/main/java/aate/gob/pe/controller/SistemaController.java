@@ -1,17 +1,26 @@
 package aate.gob.pe.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import aate.gob.pe.exception.ModeloNotFoundException;
 import aate.gob.pe.model.Sistema;
 import aate.gob.pe.service.ISistemaService;
 
-
+   
 @RestController
 @RequestMapping("/sistemas")
 public class SistemaController {
@@ -20,14 +29,38 @@ public class SistemaController {
 	private ISistemaService service;
 	
 	@GetMapping
-	public List<Sistema> listar()
+	public ResponseEntity<List<Sistema>> listar()
 	{
-		return service.listar();
+		List<Sistema> sis = service.listar();
+		if(sis==null)
+		{
+			throw new ModeloNotFoundException("Sin resultados");
+		}
+		return new ResponseEntity<List<Sistema>>(sis, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/listarPorId/{id}")
+	public ResponseEntity<Sistema> listarPorId(@PathVariable("id") Integer idSistema)
+	{	
+		Sistema sis = service.leer(idSistema);
+		if(sis.getSISCOD() ==null)
+		{
+			throw new ModeloNotFoundException("id no encontrado: "+ idSistema);
+		}
+		return new ResponseEntity<Sistema>(sis, HttpStatus.OK);
 	}
 	
-	@GetMapping("/{sigla}")
-	public List<Sistema> leerDNI(@PathVariable("sigla") String sigla)
+	@GetMapping(value = "/buscarSistema")
+	public List<Sistema> buscarSistema(@RequestBody Sistema filtro)
 	{
-		return service.siglaFindAll(sigla);
+		return service.buscarSistema(filtro);
 	}
+	
+	@PostMapping
+	public ResponseEntity<Sistema>  registrar(@RequestBody Sistema sistema) {
+		Sistema sis = service.registrar(sistema);
+		return new ResponseEntity<Sistema>(sis, HttpStatus.CREATED);
+	}
+	
+	
 }

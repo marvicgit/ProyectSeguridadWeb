@@ -1,5 +1,7 @@
 package aate.gob.pe.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,14 +19,24 @@ public class Sistema {
     @SequenceGenerator(sequenceName = "ACSE_SQ_SISTEMA", allocationSize = 1, name = "ACSE_SQ_SISTEMA")
 	@Column(name = "SISCOD")
 	private Integer SISCOD;
-	@Column(name = "SISNOM")
+	@Column(name = "SISNOM",nullable = true, length = 50)
 	private String SISNOM;
-	@Column(name = "SISDES")
+	@Column(name = "SISDES",nullable = true, length = 100)
 	private String SISDES;
-	@Column(name = "SISSIG", columnDefinition = "CHAR(10)")
+	
+	@Column(name = "SISSIG", nullable = true,length = 10)
 	private String SISSIG;
-	@Column(name = "SISEST")
+	
+	@Column(name = "SISEST", nullable = true, columnDefinition = "CHAR(1)")
 	private char SISEST;
+	@Column(name = "USUREG", nullable = true, length = 30)
+	private String USUREG;
+	@Column(name = "FECREG", nullable = true)
+	private LocalDate FECREG;
+	@Column(name = "USUMOD", nullable = true, length = 30)
+	private String USUMOD;
+	@Column(name = "FECMOD", nullable = true)
+	private LocalDate FECMOD;
 	@Column(name = "ESTREG")
 	private char ESTREG;
 	public Integer getSISCOD() {
@@ -63,5 +75,30 @@ public class Sistema {
 	public void setESTREG(char eSTREG) {
 		ESTREG = eSTREG;
 	}
+	public String getUSUREG() {
+		return USUREG;
+	}
+	public void setUSUREG(String uSUREG) {
+		USUREG = uSUREG;
+	}
+	public LocalDate getFECREG() {
+		return FECREG;
+	}
+	public void setFECREG(LocalDate fECREG) {
+		FECREG = fECREG;
+	}
+	public String getUSUMOD() {
+		return USUMOD;
+	}
+	public void setUSUMOD(String uSUMOD) {
+		USUMOD = uSUMOD;
+	}
+	public LocalDate getFECMOD() {
+		return FECMOD;
+	}
+	public void setFECMOD(LocalDate fECMOD) {
+		FECMOD = fECMOD;
+	}
+	
 	
 }

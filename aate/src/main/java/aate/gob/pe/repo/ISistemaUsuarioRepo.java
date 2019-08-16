@@ -11,7 +11,7 @@ import aate.gob.pe.model.SistemaUsuario;
 //@Repository
 public interface ISistemaUsuarioRepo extends JpaRepository<SistemaUsuario, Integer> {
 	
-	@Query(value = "SELECT USUSISCOD, USUCOD, SISCOD FROM ACSE_TV_USUARIO_SISTEMA WHERE USUCOD = :usucod AND SISCOD = siscod", nativeQuery = true)
+	@Query(value = "SELECT USUSISCOD, USUCOD, SISCOD FROM ACSE_TV_USUARIO_SISTEMA WHERE USUCOD = :usucod AND SISCOD = :siscod", nativeQuery = true)
 	List<Object[]> buscarSistemaUsuario(@Param("usucod") int usucod, @Param("siscod") int siscod);
 	
 }

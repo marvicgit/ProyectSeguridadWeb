@@ -17,6 +17,9 @@ public class SistemaServiceImp implements ISistemaService {
 	@Autowired
 	private ISistemaRepo repo;
 	
+	@Autowired
+	private ISistemaService service;
+	
 	@Override
 	public Sistema registrar(Sistema t) {
 		// TODO Auto-generated method stub
@@ -46,13 +49,14 @@ public class SistemaServiceImp implements ISistemaService {
 	@Override
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
-		repo.deleteById(id);
+		
 	}
 
 	@Override
 	public List<Sistema> siglaFindAll(String sigla) {
 		
 		List<Sistema> lista = new ArrayList<>();
+	
 		repo.siglaFindAll(sigla).forEach(x -> {
 			Sistema cr = new Sistema();
 			cr.setSISCOD(Integer.parseInt(String.valueOf(x[0])));
@@ -60,10 +64,21 @@ public class SistemaServiceImp implements ISistemaService {
 			cr.setSISDES(String.valueOf(x[2]));
 			cr.setSISSIG(String.valueOf(x[3]));
 			cr.setSISEST(String.valueOf(x[4]).charAt(0));
-			cr.setESTREG(String.valueOf(x[9]).charAt(0));
+			cr.setESTREG(String.valueOf(x[5]).charAt(0));
 			//cr.setUSUFOT(byte[] (x[7]));
 			lista.add(cr);
 		});
 		return lista;
 	}
+
+	@Override
+	public List<Sistema> buscarSistema(Sistema filtro) {
+		return repo.buscarSistema(filtro.getSISNOM(), filtro.getSISSIG(), filtro.getSISEST());
+		
+	}
+
+
+
+
+	
 }

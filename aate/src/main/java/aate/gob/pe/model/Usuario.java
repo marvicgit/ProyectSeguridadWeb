@@ -21,45 +21,45 @@ public class Usuario {
 	private int USUCOD;
 	@Column(name = "USUDNI", columnDefinition = "char(11)" )
 	private String USUDNI;
-	@Column(name = "USUNOM")
+	@Column(name = "USUNOM",nullable = true, length = 50)
 	private String USUNOM;
-	@Column(name = "USUAPEPAT")
+	@Column(name = "USUAPEPAT",nullable = true, length = 50)
 	private String USUAPEPAT;
-	@Column(name = "USUAPEMAT")
+	@Column(name = "USUAPEMAT",nullable = true, length = 50)
 	private String USUAPEMAT;
-	@Column(name = "USUCOR")
+	@Column(name = "USUCOR",nullable = true, length = 50)
 	private String USUCOR;
-	@Column(name = "USULOG")
+	@Column(name = "USULOG",nullable = true, length = 30)
 	private String USULOG;
-	@Column(name = "USUPAS")
+	@Column(name = "USUPAS",nullable = true, length = 200)
 	private String USUPAS;
-	@Column(name = "USUPASSAL")
+	@Column(name = "USUPASSAL",nullable = true, length = 50)
 	private String USUPASSAL;
 	@Column(name = "PRECOD")
 	private Integer PRECOD;
-	@Column(name = "USURESSEC")
+	@Column(name = "USURESSEC",nullable = true, length = 300)
 	private String USURESSEC;
-	@Column(name = "USURESSAL")
+	@Column(name = "USURESSAL",nullable = true, length = 50)
 	private String USURESSAL;
-	@Column(name = "USUBLO")
+	@Column(name = "USUBLO", nullable = true,columnDefinition = "char(1)" )
 	private char USUBLO;
-	@Column(name = "USUDCP")
+	@Column(name = "USUDCP",nullable = true,columnDefinition = "char(1)" )
 	private char USUDCP;
-	@Column(name = "USUNCP")
+	@Column(name = "USUNCP",nullable = true,columnDefinition = "char(1)" )
 	private char USUNCP;
-	@Column(name = "USUPNE")
+	@Column(name = "USUPNE",nullable = true,columnDefinition = "char(1)" )
 	private char USUPNE;
-	@Column(name = "USUEST")
+	@Column(name = "USUEST",nullable = true,columnDefinition = "char(1)" )
 	private char USUEST;
-	@Column(name = "USUREG")
+	@Column(name = "USUREG",nullable = true, length = 30)
 	private String USUREG;
-	@Column(name = "FECREG")
+	@Column(name = "FECREG",nullable = true)
 	private LocalDate FECREG;
-	@Column(name = "USUMOD")
+	@Column(name = "USUMOD",nullable = true, length = 30)
 	private String USUMOD;
-	@Column(name = "FECMOD")
+	@Column(name = "FECMOD",nullable = true)
 	private LocalDate FECMOD;
-	@Column(name = "ESTREG")
+	@Column(name = "ESTREG",nullable = true,columnDefinition = "char(1)" )
 	private char ESTREG;
 	@Column(name = "USUFOT", updatable = false)
 	private byte[] USUFOT;
@@ -67,13 +67,13 @@ public class Usuario {
 	private byte[] USUFIR;
 	@Column(name = "USUVIS", updatable = false)
 	private byte[] USUVIS;
-	@Column(name = "FECEXPAS")
+	@Column(name = "FECEXPAS",nullable = true)
 	private LocalDate FECEXPAS; 
-	@Column(name = "USUTEFFIJO")
+	@Column(name = "USUTEFFIJO",nullable = true, length = 10)
 	private String USUTEFFIJO;  
-	@Column(name = "USUTEFMOVIL")
+	@Column(name = "USUTEFMOVIL",nullable = true, length = 10)
 	private String USUTEFMOVIL;  
-	@Column(name = "USUANEXO")
+	@Column(name = "USUANEXO",nullable = true, length = 10)
 	private String USUANEXO;
 	public int getUSUCOD() {
 		return USUCOD;

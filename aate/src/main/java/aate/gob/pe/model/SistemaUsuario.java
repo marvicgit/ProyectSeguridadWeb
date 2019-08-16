@@ -4,9 +4,12 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,21 +22,23 @@ public class SistemaUsuario {
     @SequenceGenerator(sequenceName = "ACSE_SQ_USUARIO_SISTEMA", allocationSize = 1, name = "ACSE_SQ_USUARIO_SISTEMA")
 	@Column(name = "USUSISCOD")
 	private int USUSISCOD;
+	
+
 	@Column(name = "USUCOD")
 	private int USUCOD;
 	@Column(name = "SISCOD")
 	private int SISCOD;
-	@Column(name = "USUSISBLO", columnDefinition = "char(1)")
+	@Column(name = "USUSISBLO",  nullable = true ,columnDefinition = "char(1)")
 	private char USUSISBLO;
-	@Column(name = "USUREG")
+	@Column(name = "USUREG", nullable = true, length = 30)	
 	private String USUREG;
-	@Column(name = "FECREG")
+	@Column(name = "FECREG", nullable = true)
 	private LocalDate FECREG;
-	@Column(name = "USUMOD")
+	@Column(name = "USUMOD", nullable = true, length = 30)
 	private String USUMOD;
-	@Column(name = "FECMOD")
+	@Column(name = "FECMOD", nullable = true)
 	private LocalDate FECMOD;     
-	@Column(name = "ESTREG")
+	@Column(name = "ESTREG",  nullable = true ,columnDefinition = "char(1)")
 	private char ESTREG;
 	
 	public int getUSUSISCOD() {
