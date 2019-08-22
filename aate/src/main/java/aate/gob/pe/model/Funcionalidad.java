@@ -23,9 +23,12 @@ public class Funcionalidad {
 	@Column(name = "FUNCOD")
 	private Integer FUNCOD;
 	
-	@ManyToOne
-	@JoinColumn(name = "SISCOD",nullable = true,  foreignKey = @ForeignKey(name = "FK_ACSE_TM_FUNC_TB_SISTEMA"))
-	private Sistema sistema;
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name = "SISCOD",nullable = true, foreignKey = @ForeignKey(name =
+	 * "FK_ACSE_TM_FUNC_TB_SISTEMA")) private Sistema sistema;
+	 */
 	
 	
 	@Column(name = "FUNNOM", nullable = true,length = 50)
@@ -55,12 +58,11 @@ public class Funcionalidad {
 	public void setFUNCOD(Integer fUNCOD) {
 		FUNCOD = fUNCOD;
 	}
-	public Sistema getSistema() {
-		return sistema;
-	}
-	public void setSistema(Sistema sistema) {
-		this.sistema = sistema;
-	}
+
+	/*
+	 * public Sistema getSistema() { return sistema; } public void
+	 * setSistema(Sistema sistema) { this.sistema = sistema; }
+	 */
 	public String getFUNNOM() {
 		return FUNNOM;
 	}

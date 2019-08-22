@@ -9,11 +9,9 @@ import org.springframework.stereotype.Service;
 
 import aate.gob.pe.DTO.Login;
 import aate.gob.pe.model.Sistema;
-import aate.gob.pe.model.SistemaUsuario;
 import aate.gob.pe.model.Usuario;
 import aate.gob.pe.repo.ISistemaRepo;
 import aate.gob.pe.repo.IUsuarioRepo;
-import aate.gob.pe.service.ISistemaUsuarioService;
 import aate.gob.pe.service.IUsuarioService;
 import aate.gob.pe.util.Encriptador;
 
@@ -22,8 +20,6 @@ public class UsuarioServiceImp implements IUsuarioService {
 
 	@Autowired
 	private IUsuarioRepo repo;
-	@Autowired
-	private ISistemaUsuarioService sistemaUsuService;
 	@Autowired
 	private ISistemaRepo repoSis;
 
@@ -159,16 +155,15 @@ public class UsuarioServiceImp implements IUsuarioService {
 				listaSistema.add(cr);
 			});
 			
-			if(!listaSistema.isEmpty()) {
-				
-				SistemaUsuario busqueda = new SistemaUsuario();
-				busqueda.setUSUCOD(lista.get(0).getUSUCOD());
-				busqueda.setSISCOD(listaSistema.get(0).getSISCOD());
-				List<SistemaUsuario> listaSisUsu = sistemaUsuService.buscarSistemaUsuario(busqueda);
-				if(!listaSisUsu.isEmpty()) {
-					rpta =1;
-				} 
-			}
+				/*
+				 * if(!listaSistema.isEmpty()) {
+				 * 
+				 * SistemaUsuario busqueda = new SistemaUsuario();
+				 * busqueda.setUSUCOD(lista.get(0).getUSUCOD());
+				 * busqueda.setSISCOD(listaSistema.get(0).getSISCOD()); List<SistemaUsuario>
+				 * listaSisUsu = sistemaUsuService.buscarSistemaUsuario(busqueda);
+				 * if(!listaSisUsu.isEmpty()) { rpta =1; } }
+				 */
 			
 		} else {
 			Mensaje= "Datos Incorrectos";

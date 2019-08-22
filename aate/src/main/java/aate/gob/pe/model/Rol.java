@@ -26,10 +26,14 @@ public class Rol {
 	@Column(name = "ROLCOD")
 	private Integer ROLCOD;
 	
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name = "SISCOD",nullable = true,  foreignKey = @ForeignKey(name = "FK_ACSE_TM_ROL_TB_SISTEMA"))
-	private Sistema sistema;
+	/*
+	 * @JsonIgnore
+	 * 
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name = "SISCOD",nullable = true, foreignKey = @ForeignKey(name =
+	 * "FK_ACSE_TM_ROL_TB_SISTEMA")) private Sistema sistema;
+	 */
 	
 	@Column(name = "ROLNOM", nullable = true,length = 50)
 	private String ROLNOM;
@@ -61,12 +65,11 @@ public class Rol {
 	public void setROLCOD(Integer rOLCOD) {
 		ROLCOD = rOLCOD;
 	}
-	public Sistema getSistema() {
-		return sistema;
-	}
-	public void setSistema(Sistema sistema) {
-		this.sistema = sistema;
-	}
+
+	/*
+	 * public Sistema getSistema() { return sistema; } public void
+	 * setSistema(Sistema sistema) { this.sistema = sistema; }
+	 */
 	public String getROLDES() {
 		return ROLDES;
 	}
