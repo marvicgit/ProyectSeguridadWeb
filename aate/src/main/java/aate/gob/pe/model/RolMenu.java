@@ -1,24 +1,37 @@
 package aate.gob.pe.model;
 
+
 import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Entity
 @Table(name = "ACSE_TV_ROL_MENU")
-@IdClass(RolMenuPK.class)
+@Entity(name = "RolMenu")
 public class RolMenu {
-
-	@Id
-	private Rol rol;
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACSE_SQ_ROL_MENU")
+    @SequenceGenerator(sequenceName = "ACSE_SQ_ROL_MENU", allocationSize = 1, name = "ACSE_SQ_ROL_MENU")
+	@Column(name = "ROLMENCOD")
+	private Integer ROLMENCOD;
+	
+	@ManyToOne
+	@JoinColumn(name = "MENCOD", nullable = false, foreignKey = @ForeignKey(name = "FK_ACSE_ROL_MENU_TM_MENU"))
 	private Menu menu;
-	@Column(name = "USUREG", nullable = true,length = 30)
+
+	@ManyToOne
+	@JoinColumn(name = "ROLCOD", nullable = false, foreignKey = @ForeignKey(name = "FK_ACSE_ROL_MENU_TM_ROL"))
+	private Rol rol;
+	
 	private String USUREG;
 	@Column(name = "FECREG", nullable = true)
 	private LocalDate FECREG;
@@ -28,7 +41,24 @@ public class RolMenu {
 	private LocalDate FECMOD;
 	@Column(name = "ESTREG")
 	private char ESTREG;
-	
+	public Integer getROLMENCOD() {
+		return ROLMENCOD;
+	}
+	public void setROLMENCOD(Integer rOLMENCOD) {
+		ROLMENCOD = rOLMENCOD;
+	}
+	public Menu getMenu() {
+		return menu;
+	}
+	public void setMenu(Menu menu) {
+		this.menu = menu;
+	}
+	public Rol getRol() {
+		return rol;
+	}
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
 	public String getUSUREG() {
 		return USUREG;
 	}
@@ -59,19 +89,7 @@ public class RolMenu {
 	public void setESTREG(char eSTREG) {
 		ESTREG = eSTREG;
 	}
-	public Rol getRol() {
-		return rol;
-	}
-	public void setRol(Rol rol) {
-		this.rol = rol;
-	}
-	public Menu getMenu() {
-		return menu;
-	}
-	public void setMenu(Menu menu) {
-		this.menu = menu;
-	}
 	
 	
-	
+
 }

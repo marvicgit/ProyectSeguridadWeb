@@ -4,16 +4,12 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Table(name="ACSE_TM_ROL")
 @Entity(name="Rol")
@@ -37,6 +33,7 @@ public class Rol {
 	
 	@Column(name = "ROLNOM", nullable = true,length = 50)
 	private String ROLNOM;
+	
 	public String getROLNOM() {
 		return ROLNOM;
 	}

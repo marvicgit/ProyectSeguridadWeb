@@ -1,20 +1,20 @@
 package aate.gob.pe.controller;
 
-import java.io.IOException;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import aate.gob.pe.exception.ModeloNotFoundException;
 import aate.gob.pe.model.Sistema;
@@ -57,10 +57,19 @@ public class SistemaController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Sistema>  registrar(@RequestBody Sistema sistema) {
+	public ResponseEntity<Sistema> registrar(@RequestBody Sistema sistema) {
 		Sistema sis = service.registrar(sistema);
 		return new ResponseEntity<Sistema>(sis, HttpStatus.CREATED);
 	}
 	
+	@PutMapping
+	public ResponseEntity<Sistema> modificar(@RequestBody Sistema sistema) {
+		Sistema sis = service.modificar(sistema);
+		return new ResponseEntity<Sistema>(sis, HttpStatus.OK);
+	}
 	
+	@DeleteMapping("/{id}")
+	public void eliminar(@PathVariable("id") Integer id) {
+		service.eliminar(id);
+	}
 }

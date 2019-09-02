@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import aate.gob.pe.model.Menu;
@@ -23,14 +24,13 @@ public class MenuServiceImpl implements IMenuService {
 
 	@Override
 	public Menu modificar(Menu t) {
-		// TODO Auto-generated method stub
-		return null;
+		return	repo.save(t);
 	}
 
 	@Override
 	public List<Menu> listar() {
 		// TODO Auto-generated method stub
-		return repo.findAll();
+		return repo.findAll(Sort.by(Sort.Direction.DESC, "MENCOD"));
 	}
 
 	@Override
@@ -42,13 +42,15 @@ public class MenuServiceImpl implements IMenuService {
 	@Override
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
-		
+		repo.deleteById(id);
 	}
 
 	@Override
 	public List<Menu> listarPorIdSistema(Integer idSistema) {
-		return repo.listarPorIdSistema(idSistema);
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 
 
 }

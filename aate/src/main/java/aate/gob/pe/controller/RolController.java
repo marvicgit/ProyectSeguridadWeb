@@ -1,13 +1,16 @@
 package aate.gob.pe.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import aate.gob.pe.exception.ModeloNotFoundException;
 import aate.gob.pe.model.Menu;
 import aate.gob.pe.model.Rol;
-import aate.gob.pe.model.RolMenu;
 import aate.gob.pe.service.IRolService;
 
 @RestController
@@ -44,18 +46,23 @@ public class RolController {
 		return new ResponseEntity<Rol>(rol, HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/listarMenuPorRol/{id}")
-	public ResponseEntity<List<RolMenu>> listarMenuPorRol(@PathVariable("id")Integer id)
-	{
-		List<RolMenu> lmenu = service.listarMenuPorRol(id);
-		return new ResponseEntity<List<RolMenu>>(lmenu, HttpStatus.OK);
-	}
-	
 	
 	@PostMapping
 	public  ResponseEntity<Rol> registrar(@RequestBody Rol rol) {
 		Rol obj = service.registrar(rol);
 		return new ResponseEntity<Rol>(obj, HttpStatus.CREATED);
+	}
+	
+	@PutMapping
+	public ResponseEntity<Rol> modificar(@RequestBody Rol rol) {
+		rol.setFECMOD(LocalDate.now());
+		Rol obj = service.modificar(rol);
+		return new ResponseEntity<Rol>(obj, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/{id}")
+	public void eliminar(@PathVariable("id") Integer id) {
+		service.eliminar(id);
 	}
 	
 }

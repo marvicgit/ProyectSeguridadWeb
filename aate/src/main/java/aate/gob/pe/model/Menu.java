@@ -13,10 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.springframework.context.annotation.Primary;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Table(name="ACSE_TM_MENU")
 @Entity(name = "Menu")
 public class Menu {
@@ -31,6 +27,11 @@ public class Menu {
 	@ManyToOne
 	@JoinColumn(name = "SISCOD",nullable = true,  foreignKey = @ForeignKey(name = "FK_ACSE_TM_MENU_TB_SISTEMA"))
 	private Sistema sistema;
+	
+	/*
+	 * @OneToMany(cascade = CascadeType.ALL, mappedBy = "RolMenu") Set<RolMenu>
+	 * lstRol;
+	 */
 	
 	@Column(name = "MENNOM", nullable = true,length = 50)
 	private String MENNOM;
@@ -48,7 +49,6 @@ public class Menu {
 	private Menu padre;
 	
 	
-	
 	@Column(name = "MENSIG", nullable = true, columnDefinition = "char(20)")
 	private char[] MENSIG;
 	@Column(name = "MENEST", nullable = true, columnDefinition = "CHAR(1)")
@@ -56,7 +56,7 @@ public class Menu {
 	@Column(name = "USUREG", nullable = true,length = 30)
 	private String USUREG;
 	@Column(name = "FECREG", nullable = true)
-	private LocalDate FECREG;
+	private LocalDate FECREG = LocalDate.now();
 	@Column(name = "USUMOD", nullable = true, length = 30)
 	private String USUMOD;
 	@Column(name = "FECMOD", nullable = true)
@@ -164,6 +164,5 @@ public class Menu {
 	public void setPadre(Menu Padre) {
 		this.padre = Padre;
 	}
-	
 	
 }

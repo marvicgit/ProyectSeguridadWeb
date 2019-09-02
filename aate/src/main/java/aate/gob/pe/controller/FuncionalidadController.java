@@ -1,22 +1,23 @@
 package aate.gob.pe.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import aate.gob.pe.exception.ModeloNotFoundException;
 import aate.gob.pe.model.Funcionalidad;
-import aate.gob.pe.model.Sistema;
 import aate.gob.pe.service.IFuncionalidadService;
-import aate.gob.pe.service.ISistemaService;
 
 @RestController
 @RequestMapping("/funcionalidades")
@@ -53,6 +54,18 @@ public class FuncionalidadController {
 	public ResponseEntity<Funcionalidad>  registrar(@RequestBody Funcionalidad fun) {
 		Funcionalidad funcionalidad = service.registrar(fun);
 		return new ResponseEntity<Funcionalidad>(funcionalidad, HttpStatus.CREATED);
+	}
+	
+	@PutMapping
+	public ResponseEntity<Funcionalidad> modificar(@RequestBody Funcionalidad fun) {
+		fun.setFECMOD(LocalDate.now());
+		Funcionalidad funcionalidad = service.modificar(fun);
+		return new ResponseEntity<Funcionalidad>(funcionalidad, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/{id}")
+	public void eliminar(@PathVariable("id") Integer id) {
+		service.eliminar(id);
 	}
 
 }

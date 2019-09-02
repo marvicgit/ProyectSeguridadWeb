@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import aate.gob.pe.model.Sistema;
@@ -35,7 +36,7 @@ public class SistemaServiceImp implements ISistemaService {
 	@Override
 	public List<Sistema> listar() {
 		// TODO Auto-generated method stub
-		return repo.findAll();
+		return repo.findAll(Sort.by(Sort.Direction.DESC, "SISCOD"));
 	}
 
 	@Override
@@ -49,7 +50,7 @@ public class SistemaServiceImp implements ISistemaService {
 	@Override
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
-		
+		repo.deleteById(id);
 	}
 
 	@Override

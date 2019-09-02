@@ -7,5 +7,6 @@ import aate.gob.pe.model.RolMenu;
 
 public interface IRolMenuRepo extends JpaRepository<RolMenu,Integer> {
 
+
 	
 }

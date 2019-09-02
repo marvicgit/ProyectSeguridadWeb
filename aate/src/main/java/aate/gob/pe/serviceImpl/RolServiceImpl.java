@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import aate.gob.pe.model.Rol;
-import aate.gob.pe.model.RolMenu;
 import aate.gob.pe.model.Sistema;
 import aate.gob.pe.repo.IRolRepo;
 import aate.gob.pe.service.IRolService;
@@ -21,18 +21,18 @@ public class RolServiceImpl implements IRolService{
 	@Override
 	public Rol registrar(Rol t) {
 		// TODO Auto-generated method stub
-		return null;
+		return repo.save(t);
 	}
 
 	@Override
 	public Rol modificar(Rol t) {
 		// TODO Auto-generated method stub
-		return null;
+		return repo.save(t);
 	}
 
 	@Override
 	public List<Rol> listar() {
-		return repo.findAll();
+		return repo.findAll(Sort.by(Sort.Direction.DESC, "ROLCOD"));
 	}
 
 	@Override
@@ -44,13 +44,9 @@ public class RolServiceImpl implements IRolService{
 	@Override
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
-		
+		repo.deleteById(id);
 	}
 
-	@Override
-	public List<RolMenu> listarMenuPorRol(Integer idRol) {
-		return repo.listarMenuPorRol(idRol);
-		
-	}
+
 
 }
