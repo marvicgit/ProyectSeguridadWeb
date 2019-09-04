@@ -49,7 +49,7 @@ public class Rol {
 	@Column(name = "USUREG", nullable = true,length = 30)
 	private String USUREG;
 	@Column(name = "FECREG", nullable = true)
-	private LocalDate FECREG;
+	private LocalDate FECREG = LocalDate.now();
 	@Column(name = "USUMOD", nullable = true, length = 30)
 	private String USUMOD;
 	@Column(name = "FECMOD", nullable = true)

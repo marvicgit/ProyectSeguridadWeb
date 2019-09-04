@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import aate.gob.pe.DTO.SistemaRolDTO;
 import aate.gob.pe.model.RolMenu;
 import aate.gob.pe.repo.IRolMenuRepo;
 import aate.gob.pe.service.IRolMenuService;
@@ -44,6 +45,9 @@ public class RolMenuServiceImpl implements IRolMenuService {
 		repo.deleteById(id);
 	}
 
-
-
+	@Override
+	public List<SistemaRolDTO> buscarSistemaRol() {
+		// TODO Auto-generated method stub
+		return repo.buscarSistemaRol();
+	}
 }

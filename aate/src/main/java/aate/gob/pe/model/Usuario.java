@@ -19,6 +19,8 @@ public class Usuario {
     @SequenceGenerator(sequenceName = "ACSE_SQ_USUARIO", allocationSize = 1, name = "ACSE_SQ_USUARIO")
 	@Column(name = "USUCOD")
 	private int USUCOD;
+	@Column(name = "USUTIPDOC",nullable = true, columnDefinition = "integer")
+	private int USUTIPDOC;
 	@Column(name = "USUDNI", columnDefinition = "char(11)" )
 	private String USUDNI;
 	@Column(name = "USUNOM",nullable = true, length = 50)
@@ -27,8 +29,22 @@ public class Usuario {
 	private String USUAPEPAT;
 	@Column(name = "USUAPEMAT",nullable = true, length = 50)
 	private String USUAPEMAT;
+	@Column(name = "USUSEXO",nullable = true, columnDefinition = "integer")
+	private int USUSEXO;
+	@Column(name = "USUAREA",nullable = true, length = 100)
+	private String USUAREA;
+	@Column(name = "USUCARGO",nullable = true, length = 100)
+	private String USUCARGO;
+	@Column(name = "USUDIREC",nullable = true, length = 200)
+	private String USUDIREC;
 	@Column(name = "USUCOR",nullable = true, length = 50)
 	private String USUCOR;
+	@Column(name = "USUFACE",nullable = true, length = 200)
+	private String USUFACE;
+	@Column(name = "USUTWITTER",nullable = true, length = 200)
+	private String USUTWITTER;
+	@Column(name = "USUGOOGLE",nullable = true, length = 200)
+	private String USUGOOGLE;
 	@Column(name = "USULOG",nullable = true, length = 30)
 	private String USULOG;
 	@Column(name = "USUPAS",nullable = true, length = 200)
@@ -54,7 +70,7 @@ public class Usuario {
 	@Column(name = "USUREG",nullable = true, length = 30)
 	private String USUREG;
 	@Column(name = "FECREG",nullable = true)
-	private LocalDate FECREG;
+	private LocalDate FECREG = LocalDate.now();
 	@Column(name = "USUMOD",nullable = true, length = 30)
 	private String USUMOD;
 	@Column(name = "FECMOD",nullable = true)
@@ -248,6 +264,54 @@ public class Usuario {
 	}
 	public void setUSUANEXO(String uSUANEXO) {
 		USUANEXO = uSUANEXO;
+	}
+	public int getUSUTIPDOC() {
+		return USUTIPDOC;
+	}
+	public void setUSUTIPDOC(int uSUTIPDOC) {
+		USUTIPDOC = uSUTIPDOC;
+	}
+	public int getUSUSEXO() {
+		return USUSEXO;
+	}
+	public void setUSUSEXO(int uSUSEXO) {
+		USUSEXO = uSUSEXO;
+	}
+	public String getUSUAREA() {
+		return USUAREA;
+	}
+	public void setUSUAREA(String uSUAREA) {
+		USUAREA = uSUAREA;
+	}
+	public String getUSUCARGO() {
+		return USUCARGO;
+	}
+	public void setUSUCARGO(String uSUCARGO) {
+		USUCARGO = uSUCARGO;
+	}
+	public String getUSUDIREC() {
+		return USUDIREC;
+	}
+	public void setUSUDIREC(String uSUDIREC) {
+		USUDIREC = uSUDIREC;
+	}
+	public String getUSUFACE() {
+		return USUFACE;
+	}
+	public void setUSUFACE(String uSUFACE) {
+		USUFACE = uSUFACE;
+	}
+	public String getUSUTWITTER() {
+		return USUTWITTER;
+	}
+	public void setUSUTWITTER(String uSUTWITTER) {
+		USUTWITTER = uSUTWITTER;
+	}
+	public String getUSUGOOGLE() {
+		return USUGOOGLE;
+	}
+	public void setUSUGOOGLE(String uSUGOOGLE) {
+		USUGOOGLE = uSUGOOGLE;
 	}  
 	
 	

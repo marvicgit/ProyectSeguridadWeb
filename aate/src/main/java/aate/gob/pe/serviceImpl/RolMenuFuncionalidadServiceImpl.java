@@ -57,11 +57,7 @@ public class RolMenuFuncionalidadServiceImpl implements IRolMenuFuncionalidadSer
 
 	//@Transactional
 	@Override
-	public Integer registrarTransaccional(RolMenuFuncionalidadDTO rolmenufun) {
-		
-		
-		
-		 
+	public Integer registrarTransaccional(RolMenuFuncionalidadDTO rolmenufun) { 
 		 rolmenufun.getLstMenus().forEach(m -> {
 			 RolMenu rm = new RolMenu(); 
 			 rm.setRol(rolmenufun.getRol());

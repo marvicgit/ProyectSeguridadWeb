@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import aate.gob.pe.DTO.SistemaRolDTO;
+import aate.gob.pe.model.Menu;
 import aate.gob.pe.model.RolMenu;
 import aate.gob.pe.service.IRolMenuService;
 
@@ -31,6 +33,13 @@ public class RolMenuController {
 	{
 		List<RolMenu> lRol = service.listar();
 		return new ResponseEntity<List<RolMenu>>(lRol, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "listarSisRol")
+	public ResponseEntity<List<SistemaRolDTO>> listarSistemaRol()
+	{
+		List<SistemaRolDTO> lRol = service.buscarSistemaRol();
+		return new ResponseEntity<List<SistemaRolDTO>>(lRol, HttpStatus.OK);
 	}
 	
 	

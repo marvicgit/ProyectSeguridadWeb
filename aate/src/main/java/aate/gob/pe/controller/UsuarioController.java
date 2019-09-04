@@ -1,5 +1,6 @@
 package aate.gob.pe.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
 import aate.gob.pe.DTO.Login;
+import aate.gob.pe.model.Menu;
 import aate.gob.pe.model.Usuario;
 import aate.gob.pe.service.IUsuarioService;
 
@@ -38,11 +41,16 @@ public class UsuarioController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Integer> validarAcceso(@RequestBody Login obj)
-	{
-		int rpta = service.validaAcceso(obj);
-		return new ResponseEntity<Integer>(rpta, HttpStatus.OK);
+	public ResponseEntity<Usuario> registrar(@RequestBody Usuario usuario) {
+		Usuario usu = service.registrar(usuario);
+		return new ResponseEntity<Usuario>(usu, HttpStatus.CREATED);
 	}
 	
+	@PutMapping
+	public ResponseEntity<Usuario> modificar(@RequestBody Usuario usuario) {
+		Usuario usu = service.modificar(usuario);
+		usu.setFECMOD(LocalDate.now());
+		return new ResponseEntity<Usuario>(usu, HttpStatus.OK);
+	}
 	
 }

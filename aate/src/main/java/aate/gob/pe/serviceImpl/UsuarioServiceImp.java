@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import aate.gob.pe.DTO.Login;
@@ -38,7 +39,7 @@ public class UsuarioServiceImp implements IUsuarioService {
 	@Override
 	public List<Usuario> listar() {
 		// TODO Auto-generated method stub
-		return repo.findAll();
+		return repo.findAll(Sort.by(Sort.Direction.DESC, "USUCOD"));
 	}
 
 	@Override
