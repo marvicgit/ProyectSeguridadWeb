@@ -15,6 +15,7 @@ public interface IUsuarioService extends ICrud<Usuario>{
 	
 	int validaAcceso(Login login);
 	
+	Usuario BuscarUsuarioLdap (@Param("user") String user);
 }
 
 
