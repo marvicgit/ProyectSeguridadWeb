@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import aate.gob.pe.DTO.Login;
+import aate.gob.pe.exception.ModeloNotFoundException;
 import aate.gob.pe.model.Usuario;
 import aate.gob.pe.service.IUsuarioService;
 
@@ -44,5 +44,15 @@ public class UsuarioController {
 		return new ResponseEntity<Integer>(rpta, HttpStatus.OK);
 	}
 	
+	@GetMapping("/BuscarUsuarioLdap/{user}")
+	public ResponseEntity<Usuario> BuscarUsuarioLdap(@PathVariable("user") String user)
+	{
+		Usuario usuario= service.BuscarUsuarioLdap(user);
+		if(usuario.getUSULOG() ==null)
+		{
+			throw new ModeloNotFoundException("No se encontró el usuario en el ldap");
+		}
+		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
+	}
 	
 }
