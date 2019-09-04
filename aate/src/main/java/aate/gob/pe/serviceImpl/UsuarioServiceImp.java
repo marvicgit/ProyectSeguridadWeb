@@ -14,12 +14,9 @@ import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
 import org.springframework.data.domain.Sort;
-=======
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
->>>>>>> fd8b5e9c5be7450f792689775de6ee8738913e3b
 import org.springframework.stereotype.Service;
 
 import aate.gob.pe.DTO.Login;
