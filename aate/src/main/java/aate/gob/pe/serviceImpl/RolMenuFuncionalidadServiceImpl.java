@@ -8,7 +8,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import aate.gob.pe.DTO.RolFuncionalidadDTO;
 import aate.gob.pe.DTO.RolMenuFuncionalidadDTO;
+import aate.gob.pe.DTO.SisRolFuncionalidadDTO;
 import aate.gob.pe.model.Menu;
 import aate.gob.pe.model.RolMenu;
 import aate.gob.pe.model.RolMenuFuncionalidad;
@@ -57,27 +59,33 @@ public class RolMenuFuncionalidadServiceImpl implements IRolMenuFuncionalidadSer
 
 	//@Transactional
 	@Override
-	public Integer registrarTransaccional(RolMenuFuncionalidadDTO rolmenufun) { 
-		 rolmenufun.getLstMenus().forEach(m -> {
-			 RolMenu rm = new RolMenu(); 
-			 rm.setRol(rolmenufun.getRol());
-			 rm.setMenu(m); 
-			 RolMenu rmRpta = repoMR.save(rm);
-			
-			 rolmenufun.getLstFuncionalidad().forEach(f -> {
-				 RolMenuFuncionalidad mrf = new RolMenuFuncionalidad();
-				 mrf.setRolMenu(rmRpta);
-				 mrf.setFuncionalidad(f); 
-				 repo.save(mrf);
-			 });
+	public Integer registrarTransaccional(RolFuncionalidadDTO rolfun) { 
+		List<Integer> listaRM = repoMR.buscarIdRolMenuxSistema(rolfun.getSISCOD(), rolfun.getROLCOD());
+		listaRM.forEach(i -> {
+			rolfun.getLstFuncionalidad().forEach(f -> {
+				RolMenuFuncionalidad mrf = new RolMenuFuncionalidad();
+				RolMenu rm = new RolMenu();
+				rm.setROLMENCOD(i);
+				mrf.setRolMenu(rm);
+				mrf.setFuncionalidad(f); 
+				repo.save(mrf);			
+			});
 		});
-		 
-		 
-		
-		
 		
 		return 1;
 		 
+	}
+
+	@Override
+	public List<SisRolFuncionalidadDTO> listaSistemaRolFun() {
+		// TODO Auto-generated method stub
+		return repo.listaSistemaRolFun();
+	}
+
+	@Override
+	public void eliminarRolMenFunc(SisRolFuncionalidadDTO sisrolfun) {
+		// TODO Auto-generated method stub
+		repo.eliminarRolMenFunc(sisrolfun.getSistema().getSISCOD(), sisrolfun.getRol().getROLCOD(), sisrolfun.getFuncionalidad().getFUNCOD());
 	}
 
 }

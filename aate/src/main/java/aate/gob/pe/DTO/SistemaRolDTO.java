@@ -3,23 +3,26 @@ package aate.gob.pe.DTO;
 
 public class SistemaRolDTO {
 	
-	private Integer ROLMENCOD;
 	private Integer SISCOD;
+	private Integer ROLCOD;
 	private String ROLNOM;
 	
 	
-	public SistemaRolDTO(Integer rOLMENCOD, Integer sISCOD, String rOLNOM) {
+	public SistemaRolDTO(Integer sISCOD, Integer rOLCOD, String rOLNOM) {
 		super();
-		ROLMENCOD = rOLMENCOD;
 		SISCOD = sISCOD;
+		ROLCOD = rOLCOD;
 		ROLNOM = rOLNOM;
 	}
-	public Integer getROLMENCOD() {
-		return ROLMENCOD;
+	
+	public Integer getROLCOD() {
+		return ROLCOD;
 	}
-	public void setROLMENCOD(Integer rOLMENCOD) {
-		ROLMENCOD = rOLMENCOD;
+
+	public void setROLCOD(Integer rOLCOD) {
+		ROLCOD = rOLCOD;
 	}
+
 	public Integer getSISCOD() {
 		return SISCOD;
 	}

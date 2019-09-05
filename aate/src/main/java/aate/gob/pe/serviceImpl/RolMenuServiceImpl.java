@@ -64,4 +64,10 @@ public class RolMenuServiceImpl implements IRolMenuService {
 		// TODO Auto-generated method stub
 		return repo.buscarSistemaRol();
 	}
+
+	@Override
+	public List<Integer> buscarIdRolMenuxSistema(Integer siscod, Integer rolcod) {
+		// TODO Auto-generated method stub
+		return repo.buscarIdRolMenuxSistema(siscod, rolcod);
+	}
 }

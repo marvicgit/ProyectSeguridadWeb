@@ -1,8 +1,15 @@
 package aate.gob.pe.service;
 
-import aate.gob.pe.DTO.RolMenuFuncionalidadDTO;
+import java.util.List;
+
+import org.springframework.data.repository.query.Param;
+
+import aate.gob.pe.DTO.RolFuncionalidadDTO;
+import aate.gob.pe.DTO.SisRolFuncionalidadDTO;
 import aate.gob.pe.model.RolMenuFuncionalidad;
 
 public interface IRolMenuFuncionalidadService extends ICrud<RolMenuFuncionalidad>{
-	Integer registrarTransaccional(RolMenuFuncionalidadDTO rolmenufun);
+	Integer registrarTransaccional(RolFuncionalidadDTO rolfun);
+	List<SisRolFuncionalidadDTO> listaSistemaRolFun();
+	void eliminarRolMenFunc(SisRolFuncionalidadDTO sisrolfun);
 }

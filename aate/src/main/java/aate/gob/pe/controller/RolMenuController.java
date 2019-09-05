@@ -28,7 +28,6 @@ public class RolMenuController {
 	@Autowired
 	private IRolMenuService service;
 	
-	
 	@GetMapping
 	public ResponseEntity<List<RolMenu>> listar()
 	{
