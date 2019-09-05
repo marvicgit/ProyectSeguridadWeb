@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import aate.gob.pe.DTO.RolMenuDTO;
 import aate.gob.pe.DTO.SistemaRolDTO;
 import aate.gob.pe.model.RolMenu;
 import aate.gob.pe.repo.IRolMenuRepo;
@@ -16,6 +18,18 @@ public class RolMenuServiceImpl implements IRolMenuService {
 
 	@Autowired
 	private IRolMenuRepo repo;
+	
+	@Override
+	public Integer registrarTransaccional(RolMenuDTO rolmenu) { 
+		
+		  rolmenu.getLstMenus().forEach(m -> { 
+		  RolMenu rm = new RolMenu();
+		  rm.setRol(rolmenu.getRol()); 
+		  rm.setMenu(m); 
+		  repo.save(rm);
+		  });	  
+		return 1;	 
+	}
 	
 	@Override
 	public RolMenu registrar(RolMenu t) {
@@ -30,7 +44,7 @@ public class RolMenuServiceImpl implements IRolMenuService {
 	@Override
 	public List<RolMenu> listar() {
 		// TODO Auto-generated method stub
-		return repo.findAll();
+		return repo.findAll(Sort.by(Sort.Direction.DESC, "ROLMENCOD"));
 	}
 
 	@Override

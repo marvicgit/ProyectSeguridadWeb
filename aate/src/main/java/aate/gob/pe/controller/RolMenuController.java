@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import aate.gob.pe.DTO.RolMenuDTO;
 import aate.gob.pe.DTO.SistemaRolDTO;
 import aate.gob.pe.model.Menu;
 import aate.gob.pe.model.RolMenu;
@@ -42,11 +43,10 @@ public class RolMenuController {
 		return new ResponseEntity<List<SistemaRolDTO>>(lRol, HttpStatus.OK);
 	}
 	
-	
 	@PostMapping
-	public  ResponseEntity<RolMenu> registrar(@RequestBody RolMenu rolmenfun) {
-		RolMenu obj = service.registrar(rolmenfun);
-		return new ResponseEntity<RolMenu>(obj, HttpStatus.CREATED);
+	public  ResponseEntity<Integer> registrar(@RequestBody RolMenuDTO rolmenu) {
+		Integer obj = service.registrarTransaccional(rolmenu);
+		return new ResponseEntity<Integer>(obj, HttpStatus.CREATED);
 	}
 	
 	@PutMapping
