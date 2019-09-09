@@ -15,7 +15,7 @@ import aate.gob.pe.model.SisRolFuncionalidad;
 public interface ISisRolFuncionalidadRepo extends JpaRepository<SisRolFuncionalidad,Integer> {
 
 	
-	  @Query(value = "select distinct new aate.gob.pe.DTO.SisRolFuncionalidadDTO(s,r,f) from SisRolFuncionalidad srf join srf.rol r join srf.funcionalidad f join Sistema s on s.SISCOD = srf.SISCOD ")
+	  @Query(value = "select distinct new aate.gob.pe.DTO.SisRolFuncionalidadDTO(srf.SISROLFUNCOD, s,r,f) from SisRolFuncionalidad srf join srf.rol r join srf.funcionalidad f join Sistema s on s.SISCOD = srf.SISCOD ")
 	  List<SisRolFuncionalidadDTO> listaSistemaRolFun();
 	  
 	 /* @Transactional

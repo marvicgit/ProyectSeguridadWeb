@@ -5,16 +5,23 @@ import aate.gob.pe.model.Rol;
 import aate.gob.pe.model.Sistema;
 
 public class SisRolFuncionalidadDTO {
+	private Integer sisrolfuncod;
 	private Sistema sistema;
 	private Rol rol;
 	private Funcionalidad funcionalidad;
 	
-	
-	public SisRolFuncionalidadDTO(Sistema sistema, Rol rol, Funcionalidad funcionalidad) {
+	public SisRolFuncionalidadDTO(Integer sisrolfuncod, Sistema sistema, Rol rol, Funcionalidad funcionalidad) {
 		super();
+		this.sisrolfuncod = sisrolfuncod;
 		this.sistema = sistema;
 		this.rol = rol;
 		this.funcionalidad = funcionalidad;
+	}
+	public Integer getSisrolfuncod() {
+		return sisrolfuncod;
+	}
+	public void setSisrolfuncod(Integer sisrolfuncod) {
+		this.sisrolfuncod = sisrolfuncod;
 	}
 	public Sistema getSistema() {
 		return sistema;
@@ -34,5 +41,4 @@ public class SisRolFuncionalidadDTO {
 	public void setFuncionalidad(Funcionalidad funcionalidad) {
 		this.funcionalidad = funcionalidad;
 	}
-	
 }

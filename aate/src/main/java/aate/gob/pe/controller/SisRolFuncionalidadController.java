@@ -49,9 +49,8 @@ public class SisRolFuncionalidadController {
 		return new ResponseEntity<SisRolFuncionalidad>(obj, HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "eliminarRolMenFunc")
-	public void eliminarRolMenFunc(@RequestBody SisRolFuncionalidadDTO sisrolfun) {
-		service.eliminarRolMenFunc(sisrolfun);
+	@DeleteMapping("/{id}")
+	public void eliminar(@PathVariable("id") Integer id) {
+		service.eliminar(id);
 	}
-	
 }

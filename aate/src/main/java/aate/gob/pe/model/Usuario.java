@@ -39,12 +39,6 @@ public class Usuario {
 	private String USUDIREC;
 	@Column(name = "USUCOR",nullable = true, length = 50)
 	private String USUCOR;
-	@Column(name = "USUFACE",nullable = true, length = 200)
-	private String USUFACE;
-	@Column(name = "USUTWITTER",nullable = true, length = 200)
-	private String USUTWITTER;
-	@Column(name = "USUGOOGLE",nullable = true, length = 200)
-	private String USUGOOGLE;
 	@Column(name = "USULOG",nullable = true, length = 30)
 	private String USULOG;
 	@Column(name = "USUPAS",nullable = true, length = 200)
@@ -295,24 +289,4 @@ public class Usuario {
 	public void setUSUDIREC(String uSUDIREC) {
 		USUDIREC = uSUDIREC;
 	}
-	public String getUSUFACE() {
-		return USUFACE;
-	}
-	public void setUSUFACE(String uSUFACE) {
-		USUFACE = uSUFACE;
-	}
-	public String getUSUTWITTER() {
-		return USUTWITTER;
-	}
-	public void setUSUTWITTER(String uSUTWITTER) {
-		USUTWITTER = uSUTWITTER;
-	}
-	public String getUSUGOOGLE() {
-		return USUGOOGLE;
-	}
-	public void setUSUGOOGLE(String uSUGOOGLE) {
-		USUGOOGLE = uSUGOOGLE;
-	}  
-	
-	
 }
