@@ -17,22 +17,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import aate.gob.pe.DTO.RolFuncionalidadDTO;
 import aate.gob.pe.DTO.SisRolFuncionalidadDTO;
-import aate.gob.pe.model.RolMenuFuncionalidad;
-import aate.gob.pe.service.IRolMenuFuncionalidadService;
+import aate.gob.pe.model.SisRolFuncionalidad;
+import aate.gob.pe.service.ISisRolFuncionalidadService;
 
 @RestController
-@RequestMapping("/rolesMenusFunc")
-public class RolMenuFuncionalidadController {
+@RequestMapping("/sistemaRolesFunc")
+public class SisRolFuncionalidadController {
 
 	@Autowired
-	private IRolMenuFuncionalidadService service;
+	private ISisRolFuncionalidadService service;
 	
 	
 	@GetMapping
 	public ResponseEntity<List<SisRolFuncionalidadDTO>> listar()
 	{
-		List<SisRolFuncionalidadDTO> lRol = service.listaSistemaRolFun();
-		return new ResponseEntity<List<SisRolFuncionalidadDTO>>(lRol, HttpStatus.OK);
+		List<SisRolFuncionalidadDTO> lista = service.listaSistemaRolFun();
+		return new ResponseEntity<List<SisRolFuncionalidadDTO>>(lista, HttpStatus.OK);
 	}
 	
 	 @PostMapping 
@@ -43,10 +43,10 @@ public class RolMenuFuncionalidadController {
 	 }
 
 	@PutMapping
-	public ResponseEntity<RolMenuFuncionalidad> modificar(@RequestBody RolMenuFuncionalidad rolmenfun) {
+	public ResponseEntity<SisRolFuncionalidad> modificar(@RequestBody SisRolFuncionalidad rolmenfun) {
 		rolmenfun.setFECMOD(LocalDate.now());
-		RolMenuFuncionalidad obj = service.modificar(rolmenfun);
-		return new ResponseEntity<RolMenuFuncionalidad>(obj, HttpStatus.OK);
+		SisRolFuncionalidad obj = service.modificar(rolmenfun);
+		return new ResponseEntity<SisRolFuncionalidad>(obj, HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "eliminarRolMenFunc")

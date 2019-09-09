@@ -12,43 +12,44 @@ import aate.gob.pe.DTO.RolFuncionalidadDTO;
 import aate.gob.pe.DTO.RolMenuFuncionalidadDTO;
 import aate.gob.pe.DTO.SisRolFuncionalidadDTO;
 import aate.gob.pe.model.Menu;
+import aate.gob.pe.model.Rol;
 import aate.gob.pe.model.RolMenu;
-import aate.gob.pe.model.RolMenuFuncionalidad;
+import aate.gob.pe.model.SisRolFuncionalidad;
 import aate.gob.pe.repo.IMenuRepo;
-import aate.gob.pe.repo.IRolMenuFuncionalidadRepo;
+import aate.gob.pe.repo.ISisRolFuncionalidadRepo;
 import aate.gob.pe.repo.IRolMenuRepo;
 import aate.gob.pe.service.IMenuService;
-import aate.gob.pe.service.IRolMenuFuncionalidadService;
+import aate.gob.pe.service.ISisRolFuncionalidadService;
 
 @Service
-public class RolMenuFuncionalidadServiceImpl implements IRolMenuFuncionalidadService {
+public class SisRolFuncionalidadServiceImpl implements ISisRolFuncionalidadService {
 
 	@Autowired
-	private IRolMenuFuncionalidadRepo repo;
+	private ISisRolFuncionalidadRepo repo;
 	
 	@Autowired
 	private IRolMenuRepo repoMR;
 	
 	@Override
-	public RolMenuFuncionalidad registrar(RolMenuFuncionalidad t) {
+	public SisRolFuncionalidad registrar(SisRolFuncionalidad t) {
 	 return	repo.save(t);
 	}
 
 	@Override
-	public RolMenuFuncionalidad modificar(RolMenuFuncionalidad t) {
+	public SisRolFuncionalidad modificar(SisRolFuncionalidad t) {
 		return	repo.save(t);
 	}
 
 	@Override
-	public List<RolMenuFuncionalidad> listar() {
+	public List<SisRolFuncionalidad> listar() {
 		// TODO Auto-generated method stub
 		return repo.findAll();
 	}
 
 	@Override
-	public RolMenuFuncionalidad leer(Integer id) {
-		Optional<RolMenuFuncionalidad> op = repo.findById(id);
-		return op.isPresent() ? op.get() : new RolMenuFuncionalidad();
+	public SisRolFuncionalidad leer(Integer id) {
+		Optional<SisRolFuncionalidad> op = repo.findById(id);
+		return op.isPresent() ? op.get() : new SisRolFuncionalidad();
 	}
 
 	@Override
@@ -60,17 +61,18 @@ public class RolMenuFuncionalidadServiceImpl implements IRolMenuFuncionalidadSer
 	//@Transactional
 	@Override
 	public Integer registrarTransaccional(RolFuncionalidadDTO rolfun) { 
-		List<Integer> listaRM = repoMR.buscarIdRolMenuxSistema(rolfun.getSISCOD(), rolfun.getROLCOD());
-		listaRM.forEach(i -> {
+		//List<Integer> listaRM = repoMR.buscarIdRolMenuxSistema(rolfun.getSISCOD(), rolfun.getROLCOD());
+		//listaRM.forEach(i -> {
 			rolfun.getLstFuncionalidad().forEach(f -> {
-				RolMenuFuncionalidad mrf = new RolMenuFuncionalidad();
-				RolMenu rm = new RolMenu();
-				rm.setROLMENCOD(i);
-				mrf.setRolMenu(rm);
+				SisRolFuncionalidad mrf = new SisRolFuncionalidad();
+				mrf.setSISCOD(rolfun.getSISCOD());
+				Rol r = new Rol();
+				r.setROLCOD(rolfun.getROLCOD());
+				mrf.setRol(r);
 				mrf.setFuncionalidad(f); 
 				repo.save(mrf);			
 			});
-		});
+		//});
 		
 		return 1;
 		 
@@ -85,7 +87,13 @@ public class RolMenuFuncionalidadServiceImpl implements IRolMenuFuncionalidadSer
 	@Override
 	public void eliminarRolMenFunc(SisRolFuncionalidadDTO sisrolfun) {
 		// TODO Auto-generated method stub
-		repo.eliminarRolMenFunc(sisrolfun.getSistema().getSISCOD(), sisrolfun.getRol().getROLCOD(), sisrolfun.getFuncionalidad().getFUNCOD());
+		//repo.eliminarRolMenFunc(sisrolfun.getSistema().getSISCOD(), sisrolfun.getRol().getROLCOD(), sisrolfun.getFuncionalidad().getFUNCOD());
+	}
+
+	@Override
+	public List<Integer> buscarIdRolMenuFunxSistema(Integer siscod, Integer rolcod) {
+		// TODO Auto-generated method stub
+		return null; //repo.buscarIdRolMenuFunxSistema(siscod, rolcod);
 	}
 
 }

@@ -13,23 +13,26 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Table(name = "ACSE_TV_ROL_MENU_FUNC")
-@Entity(name = "RolMenuFuncionalidad")
-public class RolMenuFuncionalidad {
+@Table(name = "ACSE_TV_SIS_ROL_FUNC")
+@Entity(name = "SisRolFuncionalidad")
+public class SisRolFuncionalidad {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACSE_SQ_ROLMENUFUN")
-    @SequenceGenerator(sequenceName = "ACSE_SQ_ROLMENUFUN", allocationSize = 1, name = "ACSE_SQ_ROLMENUFUN")
-	@Column(name = "ROLMENFUNCOD")
-	private Integer ROLMENFUNCOD;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACSE_SQ_SISROLFUN")
+    @SequenceGenerator(sequenceName = "ACSE_SQ_SISROLFUN", allocationSize = 1, name = "ACSE_SQ_SISROLFUN")
+	@Column(name = "SISROLFUNCOD")
+	private Integer SISROLFUNCOD;
 	
 	@ManyToOne
-	@JoinColumn(name = "ROLMENCOD", nullable = false, foreignKey = @ForeignKey(name = "FK_MENROLFUN_ROLMEN"))
-	private RolMenu rolMenu;
+	@JoinColumn(name = "ROLCOD", nullable = false, foreignKey = @ForeignKey(name = "FK_ACSE_ROLFUN_TM_ROL"))
+	private Rol rol;
 
 	@ManyToOne
-	@JoinColumn(name = "FUNCOD", nullable = false, foreignKey = @ForeignKey(name = "FK_MENROLFUN_FUN"))
+	@JoinColumn(name = "FUNCOD", nullable = false, foreignKey = @ForeignKey(name = "FK_ROLFUN_FUN"))
 	private Funcionalidad funcionalidad;
+	
+	@Column(name = "SISCOD")
+	private Integer SISCOD;
 	
 	@Column(name = "USUREG", nullable = true, length = 30)
 	private String USUREG;
@@ -41,17 +44,24 @@ public class RolMenuFuncionalidad {
 	private LocalDate FECMOD;
 	@Column(name = "ESTREG")
 	private char ESTREG;
-	public Integer getROLMENFUNCOD() {
-		return ROLMENFUNCOD;
+
+	public Integer getSISROLFUNCOD() {
+		return SISROLFUNCOD;
 	}
-	public void setROLMENFUNCOD(Integer rOLMENFUNCOD) {
-		ROLMENFUNCOD = rOLMENFUNCOD;
+	public void setSISROLFUNCOD(Integer sISROLFUNCOD) {
+		SISROLFUNCOD = sISROLFUNCOD;
 	}
-	public RolMenu getRolMenu() {
-		return rolMenu;
+	public Rol getRol() {
+		return rol;
 	}
-	public void setRolMenu(RolMenu rolMenu) {
-		this.rolMenu = rolMenu;
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+	public Integer getSISCOD() {
+		return SISCOD;
+	}
+	public void setSISCOD(Integer sISCOD) {
+		SISCOD = sISCOD;
 	}
 	public Funcionalidad getFuncionalidad() {
 		return funcionalidad;

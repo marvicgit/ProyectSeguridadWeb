@@ -6,10 +6,11 @@ import org.springframework.data.repository.query.Param;
 
 import aate.gob.pe.DTO.RolFuncionalidadDTO;
 import aate.gob.pe.DTO.SisRolFuncionalidadDTO;
-import aate.gob.pe.model.RolMenuFuncionalidad;
+import aate.gob.pe.model.SisRolFuncionalidad;
 
-public interface IRolMenuFuncionalidadService extends ICrud<RolMenuFuncionalidad>{
+public interface ISisRolFuncionalidadService extends ICrud<SisRolFuncionalidad>{
 	Integer registrarTransaccional(RolFuncionalidadDTO rolfun);
 	List<SisRolFuncionalidadDTO> listaSistemaRolFun();
 	void eliminarRolMenFunc(SisRolFuncionalidadDTO sisrolfun);
+	List<Integer> buscarIdRolMenuFunxSistema(@Param("siscod") Integer siscod, @Param("rolcod") Integer rolcod);
 }
