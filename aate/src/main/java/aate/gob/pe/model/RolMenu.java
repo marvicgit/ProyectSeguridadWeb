@@ -32,6 +32,10 @@ public class RolMenu {
 	@JoinColumn(name = "ROLCOD", nullable = false, foreignKey = @ForeignKey(name = "FK_ACSE_ROL_MENU_TM_ROL"))
 	private Rol rol;
 	
+	@Column(name = "SISCOD")
+	private Integer SISCOD;
+	
+	@Column(name = "USUREG", nullable = true, length = 30)
 	private String USUREG;
 	@Column(name = "FECREG", nullable = true)
 	private LocalDate FECREG = LocalDate.now();
@@ -41,6 +45,14 @@ public class RolMenu {
 	private LocalDate FECMOD;
 	@Column(name = "ESTREG")
 	private char ESTREG;
+	
+	
+	public Integer getSISCOD() {
+		return SISCOD;
+	}
+	public void setSISCOD(Integer sISCOD) {
+		SISCOD = sISCOD;
+	}
 	public Integer getROLMENCOD() {
 		return ROLMENCOD;
 	}

@@ -1,39 +1,30 @@
 package aate.gob.pe.DTO;
 
+import aate.gob.pe.model.Rol;
 
 public class SistemaRolDTO {
 	
 	private Integer SISCOD;
-	private Integer ROLCOD;
-	private String ROLNOM;
+	private Rol rol;
 	
-	
-	public SistemaRolDTO(Integer sISCOD, Integer rOLCOD, String rOLNOM) {
+	public SistemaRolDTO(Integer sISCOD, Rol rol) {
 		super();
 		SISCOD = sISCOD;
-		ROLCOD = rOLCOD;
-		ROLNOM = rOLNOM;
+		this.rol = rol;
 	}
 	
-	public Integer getROLCOD() {
-		return ROLCOD;
-	}
-
-	public void setROLCOD(Integer rOLCOD) {
-		ROLCOD = rOLCOD;
-	}
-
 	public Integer getSISCOD() {
 		return SISCOD;
 	}
 	public void setSISCOD(Integer sISCOD) {
 		SISCOD = sISCOD;
 	}
-	public String getROLNOM() {
-		return ROLNOM;
+	public Rol getRol() {
+		return rol;
 	}
-	public void setROLNOM(String rOLNOM) {
-		ROLNOM = rOLNOM;
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
+	
 	
 }

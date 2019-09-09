@@ -7,8 +7,16 @@ import aate.gob.pe.model.Rol;
 
 
 public class RolMenuDTO {
+	private Integer siscod;
 	private Rol rol;
 	private List<Menu> lstMenus;
+	
+	public Integer getSiscod() {
+		return siscod;
+	}
+	public void setSiscod(Integer siscod) {
+		this.siscod = siscod;
+	}
 	public Rol getRol() {
 		return rol;
 	}

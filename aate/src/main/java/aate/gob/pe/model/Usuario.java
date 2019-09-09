@@ -65,8 +65,8 @@ public class Usuario {
 	private char USUNCP;
 	@Column(name = "USUPNE",nullable = true,columnDefinition = "char(1)" )
 	private char USUPNE;
-	@Column(name = "USUEST",nullable = true,columnDefinition = "char(1)" )
-	private char USUEST;
+	@Column(name = "USUEST",nullable = true)
+	private Integer USUEST;
 	@Column(name = "USUREG",nullable = true, length = 30)
 	private String USUREG;
 	@Column(name = "FECREG",nullable = true)
@@ -187,10 +187,10 @@ public class Usuario {
 	public void setUSUPNE(char uSUPNE) {
 		USUPNE = uSUPNE;
 	}
-	public char getUSUEST() {
+	public Integer getUSUEST() {
 		return USUEST;
 	}
-	public void setUSUEST(char uSUEST) {
+	public void setUSUEST(Integer uSUEST) {
 		USUEST = uSUEST;
 	}
 	public String getUSUREG() {

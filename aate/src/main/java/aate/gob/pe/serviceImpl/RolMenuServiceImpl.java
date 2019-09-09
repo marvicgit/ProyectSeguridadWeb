@@ -9,7 +9,11 @@ import org.springframework.stereotype.Service;
 
 import aate.gob.pe.DTO.RolMenuDTO;
 import aate.gob.pe.DTO.SistemaRolDTO;
+import aate.gob.pe.model.Funcionalidad;
 import aate.gob.pe.model.RolMenu;
+import aate.gob.pe.model.SisRolFuncionalidad;
+import aate.gob.pe.model.UserSisRolFuncionalidad;
+import aate.gob.pe.repo.ISisRolFuncionalidadRepo;
 import aate.gob.pe.repo.IRolMenuRepo;
 import aate.gob.pe.service.IRolMenuService;
 
@@ -19,15 +23,28 @@ public class RolMenuServiceImpl implements IRolMenuService {
 	@Autowired
 	private IRolMenuRepo repo;
 	
+	@Autowired
+	private ISisRolFuncionalidadRepo repoRMF;
+	
 	@Override
 	public Integer registrarTransaccional(RolMenuDTO rolmenu) { 
 		
-		  rolmenu.getLstMenus().forEach(m -> { 
+		//List<Integer> listaRM = repo.buscarIdRolMenuxSistema(rolfun.getSISCOD(), rolfun.getROLCOD());
+		 rolmenu.getLstMenus().forEach(m -> { 
 		  RolMenu rm = new RolMenu();
+		  rm.setSISCOD(rolmenu.getSiscod());
 		  rm.setRol(rolmenu.getRol()); 
 		  rm.setMenu(m); 
-		  repo.save(rm);
-		  });	  
+		  RolMenu rmRpta = repo.save(rm);
+		  
+		 // SisRolFuncionalidad rmf = new SisRolFuncionalidad(); 
+		 // Funcionalidad f = new Funcionalidad();
+		 // f.setFUNCOD(1);
+		 // rmf.setRolMenu(rmRpta);
+		 // rmf.setFuncionalidad(f); 
+		 // repoRMF.save(rmf);	
+		  });	
+
 		return 1;	 
 	}
 	
