@@ -82,10 +82,10 @@ public class UsuarioSistemaRolController {
 	}
 	
 	 @PostMapping 
-	 public ResponseEntity<Integer> registrar(@RequestBody UsuarioSisRolDTO ususisrol)
+	 public ResponseEntity<UserSisRolFuncionalidad> registrar(@RequestBody UserSisRolFuncionalidad ususisrol)
 	 { 
-		 Integer rpta = service.registrarTransaccionalSis(ususisrol); 
-		 return new ResponseEntity<Integer>(rpta, HttpStatus.CREATED); 
+		 UserSisRolFuncionalidad rpta = service.registrar(ususisrol); 
+		 return new ResponseEntity<UserSisRolFuncionalidad>(rpta, HttpStatus.CREATED); 
 	 }
 	
 }

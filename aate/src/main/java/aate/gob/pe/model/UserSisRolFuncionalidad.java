@@ -43,7 +43,7 @@ public class UserSisRolFuncionalidad {
 	@Column(name = "FECMOD", nullable = true)
 	private LocalDate FECMOD;
 	@Column(name = "ESTREG")
-	private char ESTREG;
+	private char ESTREG = '1';
 
 	
 	public Integer getSISCOD() {
