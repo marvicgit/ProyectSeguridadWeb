@@ -312,7 +312,7 @@ public class Usuario {
 	}
 	public void setUSUGOOGLE(String uSUGOOGLE) {
 		USUGOOGLE = uSUGOOGLE;
-	}  
+	}
 	
 	
 }

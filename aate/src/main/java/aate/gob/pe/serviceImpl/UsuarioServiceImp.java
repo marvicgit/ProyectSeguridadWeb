@@ -15,6 +15,12 @@ import javax.naming.ldap.LdapContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
@@ -29,7 +35,7 @@ import aate.gob.pe.util.Encriptador;
 
 @Service
 @Configuration
-public class UsuarioServiceImp implements IUsuarioService {
+public class UsuarioServiceImp implements UserDetailsService, IUsuarioService {
 
 	@Autowired
 	private IUsuarioRepo repo;
@@ -44,6 +50,29 @@ public class UsuarioServiceImp implements IUsuarioService {
 
 	@Value("${ldap.provider_url}")
 	private String provider_url;
+	
+	@Autowired
+	private IUsuarioRepo userRepo;
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Usuario user = userRepo.buscarUsuarioxLogin(username); //from usuario where nombre := username
+		
+		if (user == null) {
+			throw new UsernameNotFoundException(String.format("Usuario no existe", username));
+		}
+		
+		List<GrantedAuthority> authorities = new ArrayList<>();
+		
+//		user.getRoles().forEach( role -> {
+//			authorities.add(new SimpleGrantedAuthority(role.getNombre()));
+//		});
+		authorities.add(new SimpleGrantedAuthority("ADMIN"));
+		
+		UserDetails userDetails = new User(user.getUSULOG(), user.getUSUPAS(), authorities);
+		
+		return userDetails;
+	}
 	
 	@Override
 	public Usuario registrar(Usuario t) {
