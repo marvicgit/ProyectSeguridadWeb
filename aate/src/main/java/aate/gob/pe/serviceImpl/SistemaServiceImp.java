@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import aate.gob.pe.model.OauthClientDetails;
 import aate.gob.pe.model.Sistema;
+import aate.gob.pe.repo.IOauthClientDetailsRepo;
 import aate.gob.pe.repo.ISistemaRepo;
 import aate.gob.pe.service.ISistemaService;
 
@@ -19,12 +21,22 @@ public class SistemaServiceImp implements ISistemaService {
 	private ISistemaRepo repo;
 	
 	@Autowired
-	private ISistemaService service;
+	private IOauthClientDetailsRepo repoOauth;
 	
 	@Override
 	public Sistema registrar(Sistema t) {
 		// TODO Auto-generated method stub
+		OauthClientDetails oauth = new OauthClientDetails();
+		oauth.setClient_id(t.getSISSIG());
+		oauth.setClient_secret("$2a$10$4shvkjncsFvuLIu.DD6w3OE8MnTwdfQzqPTDDTaCsHftPYHE1Lu6u");
+		oauth.setScope("read,write,trust");
+		oauth.setAuthorized_grant_types("password,refresh_token");
+		oauth.setAuthorities("role_client,role_trusted_client");
+		oauth.setAccess_token_validity(900);
+		oauth.setRefresh_token_validity(2592000);
+		repoOauth.save(oauth);
 		return repo.save(t);
+
 	}
 
 	@Override

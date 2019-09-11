@@ -2,6 +2,8 @@ package aate.gob.pe.config;
 
 import java.util.Arrays;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -49,16 +51,17 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	private AuthenticationManager authenticationManager;	
 	
 	@Autowired
-	private BCryptPasswordEncoder bcrypt;	
+	private DataSource dataSource;
 	
 	@Autowired
 	private ISistemaRepo repoSis;
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
-		configurer.inMemory().withClient(clientId).secret(bcrypt.encode(clientSecret)).authorizedGrantTypes(grantType)
+		configurer.jdbc(dataSource);
+		/*configurer.inMemory().withClient(clientId).secret(bcrypt.encode(clientSecret)).authorizedGrantTypes(grantType)
 		.scopes(scopeRead, scopeWrite).resourceIds(resourceIds).accessTokenValiditySeconds(100)
-		.refreshTokenValiditySeconds(0);		
+		.refreshTokenValiditySeconds(0);	*/
 	}
 
 	@Override
