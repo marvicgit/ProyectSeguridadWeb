@@ -27,6 +27,9 @@ public class Sistema {
 	@Column(name = "SISSIG", nullable = true,length = 10)
 	private String SISSIG;
 	
+	@Column(name = "SISPAS",nullable = true, length = 100)
+	private String SISPAS;
+	
 	@Column(name = "SISEST", nullable = true, columnDefinition = "CHAR(1)")
 	private char SISEST;
 	@Column(name = "USUREG", nullable = true, length = 30)

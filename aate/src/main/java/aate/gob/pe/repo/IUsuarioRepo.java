@@ -11,6 +11,9 @@ import aate.gob.pe.model.Usuario;
 //@Repository
 public interface IUsuarioRepo extends JpaRepository<Usuario, Integer> {
 	
+	@Query(value = "select u from Usuario u WHERE u.USULOG = :username")
+	Usuario buscarUsuarioxLogin(String username);
+	
 	@Query(value = "select * from ACSE_TM_USUARIO WHERE TRIM(USUDNI)= :dni", nativeQuery = true)
 	List<Object[]> dniFindAll(@Param("dni") String dni);
 	

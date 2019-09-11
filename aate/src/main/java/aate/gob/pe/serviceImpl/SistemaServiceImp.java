@@ -54,28 +54,15 @@ public class SistemaServiceImp implements ISistemaService {
 	}
 
 	@Override
-	public List<Sistema> siglaFindAll(String sigla) {
-		
-		List<Sistema> lista = new ArrayList<>();
-	
-		repo.siglaFindAll(sigla).forEach(x -> {
-			Sistema cr = new Sistema();
-			cr.setSISCOD(Integer.parseInt(String.valueOf(x[0])));
-			cr.setSISNOM(String.valueOf(x[1]));
-			cr.setSISDES(String.valueOf(x[2]));
-			cr.setSISSIG(String.valueOf(x[3]));
-			cr.setSISEST(String.valueOf(x[4]).charAt(0));
-			cr.setESTREG(String.valueOf(x[5]).charAt(0));
-			//cr.setUSUFOT(byte[] (x[7]));
-			lista.add(cr);
-		});
-		return lista;
-	}
-
-	@Override
 	public List<Sistema> buscarSistema(Sistema filtro) {
 		return repo.buscarSistema(filtro.getSISNOM(), filtro.getSISSIG(), filtro.getSISEST());
 		
+	}
+
+	@Override
+	public List<Sistema> siglaFindAll(String sigla) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

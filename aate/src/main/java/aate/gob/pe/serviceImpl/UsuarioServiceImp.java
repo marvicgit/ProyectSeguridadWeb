@@ -15,6 +15,12 @@ import javax.naming.ldap.LdapContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
@@ -29,7 +35,7 @@ import aate.gob.pe.util.Encriptador;
 
 @Service
 @Configuration
-public class UsuarioServiceImp implements IUsuarioService {
+public class UsuarioServiceImp implements UserDetailsService, IUsuarioService {
 
 	@Autowired
 	private IUsuarioRepo repo;
@@ -44,6 +50,32 @@ public class UsuarioServiceImp implements IUsuarioService {
 
 	@Value("${ldap.provider_url}")
 	private String provider_url;
+	
+	@Autowired
+	private IUsuarioRepo userRepo;
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Usuario user = userRepo.buscarUsuarioxLogin(username); //from usuario where nombre := username
+		
+		if (user == null) {
+			throw new UsernameNotFoundException(String.format("Usuario no existe", username));
+		} else {
+			
+		}
+		
+		List<GrantedAuthority> authorities = new ArrayList<>();
+		
+//		user.getRoles().forEach( role -> {
+//			authorities.add(new SimpleGrantedAuthority(role.getNombre()));
+//		});
+		authorities.add(new SimpleGrantedAuthority("ADMIN"));
+		authorities.add(new SimpleGrantedAuthority("CONSULTA"));
+		
+		UserDetails userDetails = new User(user.getUSULOG(), user.getUSUPAS(), authorities);
+		
+		return userDetails;
+	}
 	
 	@Override
 	public Usuario registrar(Usuario t) {
@@ -121,86 +153,6 @@ public class UsuarioServiceImp implements IUsuarioService {
 	}
 
 	@Override
-	public int validaAcceso(Login login) {
-		// TODO Auto-generated method stub
-		List<Usuario> lista = new ArrayList<>();
-		List<Sistema> listaSistema = new ArrayList<>();
-		int rpta = 0;
-		String Mensaje = "";
-		try {
-			String passwordEncriptado = Encriptador.Encriptar(login.getPassword());
-
-			if (login.getCorreo() == null) {
-
-				repo.validaAccesoDNIUsuario(login.getDni(), login.getLogin(), passwordEncriptado).forEach(x -> {
-					Usuario cr = new Usuario();
-					cr.setUSUCOD(Integer.parseInt(String.valueOf(x[0])));
-					cr.setUSUDNI(String.valueOf(x[1]));
-					cr.setUSUNOM(String.valueOf(x[2]));
-					cr.setUSUAPEPAT(String.valueOf(x[3]));
-					cr.setUSUAPEMAT(String.valueOf(x[4]));
-					cr.setUSUCOR(String.valueOf(x[5]));
-					cr.setUSULOG(String.valueOf(x[6]));
-					lista.add(cr);
-				});
-
-			} else {
-				repo.validaAccesoDNICorreo(login.getDni(), login.getCorreo(), passwordEncriptado).forEach(x -> {
-					Usuario cr = new Usuario();
-					cr.setUSUCOD(Integer.parseInt(String.valueOf(x[0])));
-					cr.setUSUDNI(String.valueOf(x[1]));
-					cr.setUSUNOM(String.valueOf(x[2]));
-					cr.setUSUAPEPAT(String.valueOf(x[3]));
-					cr.setUSUAPEMAT(String.valueOf(x[4]));
-					cr.setUSUCOR(String.valueOf(x[5]));
-					cr.setUSULOG(String.valueOf(x[6]));
-					lista.add(cr);
-				});
-				// rpta = repo.validaAccesoDNICorreo(login.getDni(), login.getCorreo(),
-				// passwordEncriptado).isEmpty() ? 0 : 1;
-			}
-
-			if (!lista.isEmpty()) {
-				if (lista.get(0).getUSUBLO() == '1') {
-					Mensaje = "Usuario Bloqueado";
-				} else if (lista.get(0).getUSUEST() == '0') {
-					Mensaje = "Usuario Inactivo";
-				}
-
-				repoSis.siglaFindAll(login.getSigla()).forEach(x -> {
-					Sistema cr = new Sistema();
-					cr.setSISCOD(Integer.parseInt(String.valueOf(x[0])));
-					cr.setSISNOM(String.valueOf(x[1]));
-					cr.setSISDES(String.valueOf(x[2]));
-					cr.setSISSIG(String.valueOf(x[3]));
-					cr.setSISEST(String.valueOf(x[4]).charAt(0));
-					cr.setESTREG(String.valueOf(x[5]).charAt(0));
-					listaSistema.add(cr);
-				});
-
-				/*
-				 * if(!listaSistema.isEmpty()) {
-				 * 
-				 * SistemaUsuario busqueda = new SistemaUsuario();
-				 * busqueda.setUSUCOD(lista.get(0).getUSUCOD());
-				 * busqueda.setSISCOD(listaSistema.get(0).getSISCOD()); List<SistemaUsuario>
-				 * listaSisUsu = sistemaUsuService.buscarSistemaUsuario(busqueda);
-				 * if(!listaSisUsu.isEmpty()) { rpta =1; } }
-				 */
-
-			} else {
-				Mensaje = "Datos Incorrectos";
-			}
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			rpta = 0;
-		}
-		return rpta;
-	}
-
-	@Override
 	public Usuario BuscarUsuarioLdap(String user) {
 		Usuario beUsuario = new Usuario();
 
@@ -267,6 +219,12 @@ public class UsuarioServiceImp implements IUsuarioService {
 		}
 
 		return null;
+	}
+
+	@Override
+	public int validaAcceso(Login login) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
