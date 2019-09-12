@@ -40,10 +40,10 @@ public class loginController {
 	private BCryptPasswordEncoder bcrypt;
 
 	@PostMapping(value = "/enviarCorreo", consumes = MediaType.TEXT_PLAIN_VALUE)
-	public ResponseEntity<Integer> enviarCorreo(@RequestBody String correo) {
+	public ResponseEntity<Integer> enviarCorreo(@RequestBody String username) {
 		int rpta = 0;
 		try {
-			Usuario us = service.verificarNombreUsuario(correo);
+			Usuario us = service.verificarNombreUsuario(username);
 			if (us != null && us.getUSUCOD() > 0) {
 			
 				ResetToken token = new ResetToken();
@@ -53,12 +53,12 @@ public class loginController {
 				tokenService.guardar(token);
 				
 				Mail mail = new Mail();
-				mail.setFrom("desarrollo10@aate.gob.pe");
-				mail.setTo(us.getUSULOG());
+				mail.setFrom("alertaplicaciones@aate.gob.pe");
+				mail.setTo(us.getUSUCOR());
 				mail.setSubject("RESTABLECER CONTRASEÑA - SISAC");
 				
 				Map<String, Object> model = new HashMap<>();
-				String url = "http://localhost:4200/#/recuperar/" + token.getToken();
+				String url = "http://localhost:4200/recuperar/" + token.getToken();
 				model.put("user", token.getUsuario().getUSULOG());
 				model.put("resetUrl", url);
 				mail.setModel(model);
@@ -66,6 +66,7 @@ public class loginController {
 				rpta = 1;
 			}
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return new ResponseEntity<Integer>(rpta, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return new ResponseEntity<Integer>(rpta, HttpStatus.OK);

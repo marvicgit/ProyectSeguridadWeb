@@ -2,8 +2,8 @@ spring:
    mail:
     default-encoding: UTF-8
     host: mail.aate.gob.pe
-    username: desarrollo11
-    password: M@Munlima19
+    username: alertaplicaciones
+    password: alerta$2018
     port: 587
     properties:
       mail:
@@ -13,6 +13,10 @@ spring:
           auth: true
           starttls:
             enable: true       
-            required: true     
+            required: true 
+          ssl:
+            trust: mail.aate.gob.pe    
     protocol: smtp
     test-connection: false
+    
+    
