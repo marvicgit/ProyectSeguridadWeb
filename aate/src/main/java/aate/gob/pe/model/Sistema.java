@@ -24,7 +24,7 @@ public class Sistema {
 	@Column(name = "SISDES",nullable = true, length = 100)
 	private String SISDES;
 	
-	@Column(name = "SISSIG", nullable = true,length = 20)
+	@Column(name = "SISSIG", nullable = true,length = 15)
 	private String SISSIG;
 	
 	@Column(name = "SISPAS",nullable = true, length = 100)

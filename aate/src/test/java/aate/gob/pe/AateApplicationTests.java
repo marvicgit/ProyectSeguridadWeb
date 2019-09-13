@@ -43,10 +43,10 @@ public class AateApplicationTests {
 		us.setUSUCOR("DESARROLLO10@AATE.GOB.PE");
 		//us.setNombre("MARTIN.CARRILLO");
 		us.setUSULOG("DESARROLLO10");
-		us.setUSUPAS(bcrypt.encode("sisacse2019Aate"));
+		us.setUSUPAS(bcrypt.encode("123"));
 		System.out.println(us.getUSUPAS());
-
-		Usuario retorno = null;
+		
+		Usuario retorno = service.registrar(us);
 
 		assertTrue(retorno.getUSUPAS().equalsIgnoreCase(us.getUSUPAS()));
 	}

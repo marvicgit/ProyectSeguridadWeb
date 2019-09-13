@@ -71,7 +71,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         .realmName(securityRealm)
         .and()
         .csrf()
-        .disable();        
+        .disable();     
+
 	}
 	
 	@Bean

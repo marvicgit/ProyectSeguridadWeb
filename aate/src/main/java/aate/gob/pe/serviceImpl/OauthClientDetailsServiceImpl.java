@@ -3,11 +3,13 @@ package aate.gob.pe.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import aate.gob.pe.model.OauthClientDetails;
 import aate.gob.pe.repo.IOauthClientDetailsRepo;
 import aate.gob.pe.service.IOauthClientDetailsService;
 
+@Service
 public class OauthClientDetailsServiceImpl implements IOauthClientDetailsService {
 
 	@Autowired
@@ -27,7 +29,7 @@ public class OauthClientDetailsServiceImpl implements IOauthClientDetailsService
 	@Override
 	public List<OauthClientDetails> listar() {
 		// TODO Auto-generated method stub
-		return null;
+		return repo.findAll();
 	}
 
 	@Override

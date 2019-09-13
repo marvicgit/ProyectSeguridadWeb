@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import aate.gob.pe.DTO.RolFuncionalidadDTO;
-import aate.gob.pe.DTO.RolMenuFuncionalidadDTO;
 import aate.gob.pe.DTO.UserRolMenuFuncionalidadDTO;
 import aate.gob.pe.DTO.UsuarioSisRolDTO;
 import aate.gob.pe.DTO.UsuarioSisRolFuncDTO;

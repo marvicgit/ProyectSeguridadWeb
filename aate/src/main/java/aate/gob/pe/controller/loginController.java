@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.provider.ClientRegistrationService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +39,7 @@ public class loginController {
 
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
+	
 
 	@PostMapping(value = "/enviarCorreo", consumes = MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<Integer> enviarCorreo(@RequestBody String username) {
@@ -98,6 +100,20 @@ public class loginController {
 			String claveHash = bcrypt.encode(clave);
 			rpta = service.cambiarClave(claveHash, rt.getUsuario().getUSULOG());
 			tokenService.eliminar(rt);
+		} catch (Exception e) {
+			return new ResponseEntity<Integer>(rpta, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Integer>(rpta, HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/cambiarClave")
+	public ResponseEntity<Integer> cambiarClave(@RequestBody Usuario usuario) {
+		int rpta = 0;
+		try {
+			//ResetToken rt = tokenService.findByToken("");
+			String claveHash = bcrypt.encode(usuario.getUSUPAS());
+			rpta = service.cambiarClave(claveHash, usuario.getUSULOG());
+			//tokenService.eliminar(rt);
 		} catch (Exception e) {
 			return new ResponseEntity<Integer>(rpta, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
