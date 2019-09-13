@@ -8,7 +8,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import aate.gob.pe.model.Rol;
-import aate.gob.pe.model.Sistema;
 import aate.gob.pe.repo.IRolRepo;
 import aate.gob.pe.service.IRolService;
 

@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import aate.gob.pe.DTO.UsuarioSisRolDTO;
-import aate.gob.pe.DTO.UsuarioSisRolFuncDTO;
 import aate.gob.pe.DTO.UsuarioSistemaDTO;
 import aate.gob.pe.DTO.UsuarioSistemaRolDTO;
 import aate.gob.pe.exception.ModeloNotFoundException;

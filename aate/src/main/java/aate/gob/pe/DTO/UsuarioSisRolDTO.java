@@ -2,7 +2,6 @@ package aate.gob.pe.DTO;
 
 import java.util.List;
 
-import aate.gob.pe.model.Rol;
 import aate.gob.pe.model.Usuario;
 
 public class UsuarioSisRolDTO {

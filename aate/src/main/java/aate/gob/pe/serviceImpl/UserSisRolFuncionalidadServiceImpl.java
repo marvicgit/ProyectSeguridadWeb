@@ -4,27 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import aate.gob.pe.DTO.RolFuncionalidadDTO;
-import aate.gob.pe.DTO.UserRolMenuFuncionalidadDTO;
 import aate.gob.pe.DTO.UsuarioSisRolDTO;
-import aate.gob.pe.DTO.UsuarioSisRolFuncDTO;
 import aate.gob.pe.DTO.UsuarioSistemaDTO;
 import aate.gob.pe.DTO.UsuarioSistemaRolDTO;
-import aate.gob.pe.model.Menu;
-import aate.gob.pe.model.RolMenu;
-import aate.gob.pe.model.SisRolFuncionalidad;
 import aate.gob.pe.model.UserSisRolFuncionalidad;
-import aate.gob.pe.model.Usuario;
-import aate.gob.pe.repo.IMenuRepo;
-import aate.gob.pe.repo.ISisRolFuncionalidadRepo;
 import aate.gob.pe.repo.IUserSisRolFuncionalidadRepo;
-import aate.gob.pe.repo.IRolMenuRepo;
-import aate.gob.pe.service.IMenuService;
 import aate.gob.pe.service.IUserSisRolFuncionalidadService;
 
 @Service
@@ -32,12 +18,6 @@ public class UserSisRolFuncionalidadServiceImpl implements IUserSisRolFuncionali
 
 	@Autowired
 	private IUserSisRolFuncionalidadRepo repo;
-	
-	@Autowired
-	private ISisRolFuncionalidadRepo repoRMF;
-	
-	@Autowired
-	private IRolMenuRepo repoMR;
 	
 	@Override
 	public UserSisRolFuncionalidad registrar(UserSisRolFuncionalidad t) {

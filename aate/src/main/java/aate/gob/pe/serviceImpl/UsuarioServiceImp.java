@@ -26,7 +26,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import aate.gob.pe.DTO.Login;
-import aate.gob.pe.model.Sistema;
 import aate.gob.pe.model.Usuario;
 import aate.gob.pe.repo.ISistemaRepo;
 import aate.gob.pe.repo.IUsuarioRepo;
@@ -39,8 +38,6 @@ public class UsuarioServiceImp implements UserDetailsService, IUsuarioService {
 
 	@Autowired
 	private IUsuarioRepo repo;
-	@Autowired
-	private ISistemaRepo repoSis;
 
 	@Value("${ldap.security_principal}")
 	private String security_principal;

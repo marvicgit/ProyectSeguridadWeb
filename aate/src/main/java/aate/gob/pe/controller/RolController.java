@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import aate.gob.pe.exception.ModeloNotFoundException;
-import aate.gob.pe.model.Menu;
 import aate.gob.pe.model.Rol;
 import aate.gob.pe.service.IRolService;
 

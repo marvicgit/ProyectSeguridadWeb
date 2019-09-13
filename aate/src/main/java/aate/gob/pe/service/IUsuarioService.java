@@ -3,10 +3,8 @@ package aate.gob.pe.service;
 import java.util.List;
 
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import aate.gob.pe.DTO.Login;
-import aate.gob.pe.model.Sistema;
 import aate.gob.pe.model.Usuario;
 
 public interface IUsuarioService extends ICrud<Usuario>{

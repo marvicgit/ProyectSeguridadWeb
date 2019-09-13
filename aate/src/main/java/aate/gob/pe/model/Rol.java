@@ -43,8 +43,8 @@ public class Rol {
 	@Column(name = "ROLDES", nullable = true,length = 100)
 	private String ROLDES;
 	@Column(name = "ROLSIG", nullable = true, columnDefinition = "char(20)")
-	private char[] ROLSIG;
-	@Column(name = "ROLEST", nullable = true, columnDefinition = "CHAR(1)")
+	private String ROLSIG;
+	@Column(name = "ROLEST", nullable = true, length = 20)
 	private char ROLEST;
 	@Column(name = "USUREG", nullable = true,length = 30)
 	private String USUREG;
@@ -73,10 +73,10 @@ public class Rol {
 	public void setROLDES(String rOLDES) {
 		ROLDES = rOLDES;
 	}
-	public char[] getROLSIG() {
+	public String getROLSIG() {
 		return ROLSIG;
 	}
-	public void setROLSIG(char[] rOLSIG) {
+	public void setROLSIG(String rOLSIG) {
 		ROLSIG = rOLSIG;
 	}
 	public char getROLEST() {

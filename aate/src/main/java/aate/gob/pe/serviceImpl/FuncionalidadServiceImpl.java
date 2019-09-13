@@ -8,8 +8,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import aate.gob.pe.model.Funcionalidad;
-import aate.gob.pe.model.Menu;
-import aate.gob.pe.model.Sistema;
 import aate.gob.pe.repo.IFuncionalidadRepo;
 import aate.gob.pe.service.IFuncionalidadService;
 

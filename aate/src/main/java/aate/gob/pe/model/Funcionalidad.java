@@ -32,8 +32,8 @@ public class Funcionalidad {
 	private String FUNNOM;
 	@Column(name = "FUNDES", nullable = true,length = 100)
 	private String FUNDES;
-	@Column(name = "FUNSIG", nullable = true, columnDefinition = "char(50)")
-	private char[] FUNSIG;
+	@Column(name = "FUNSIG", nullable = true, length = 20)
+	private String FUNSIG;
 	@Column(name = "FUNEST", nullable = true, columnDefinition = "CHAR(1)")
 	private char FUNEST;
 	@Column(name = "USUREG", nullable = true,length = 30)
@@ -72,10 +72,10 @@ public class Funcionalidad {
 	public void setFUNDES(String fUNDES) {
 		FUNDES = fUNDES;
 	}
-	public char[] getFUNSIG() {
+	public String getFUNSIG() {
 		return FUNSIG;
 	}
-	public void setFUNSIG(char[] fUNSIG) {
+	public void setFUNSIG(String fUNSIG) {
 		FUNSIG = fUNSIG;
 	}
 	public char getFUNEST() {

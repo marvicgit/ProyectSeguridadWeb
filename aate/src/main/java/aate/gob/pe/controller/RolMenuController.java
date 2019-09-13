@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import aate.gob.pe.DTO.RolMenuDTO;
 import aate.gob.pe.DTO.SistemaRolDTO;
-import aate.gob.pe.model.Menu;
 import aate.gob.pe.model.RolMenu;
 import aate.gob.pe.service.IRolMenuService;
 

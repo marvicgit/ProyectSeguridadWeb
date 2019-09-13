@@ -4,20 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import aate.gob.pe.DTO.RolFuncionalidadDTO;
 import aate.gob.pe.DTO.SisRolFuncionalidadDTO;
-import aate.gob.pe.model.Menu;
 import aate.gob.pe.model.Rol;
-import aate.gob.pe.model.RolMenu;
 import aate.gob.pe.model.SisRolFuncionalidad;
-import aate.gob.pe.repo.IMenuRepo;
 import aate.gob.pe.repo.ISisRolFuncionalidadRepo;
-import aate.gob.pe.repo.IRolMenuRepo;
-import aate.gob.pe.service.IMenuService;
 import aate.gob.pe.service.ISisRolFuncionalidadService;
 
 @Service
@@ -25,9 +18,6 @@ public class SisRolFuncionalidadServiceImpl implements ISisRolFuncionalidadServi
 
 	@Autowired
 	private ISisRolFuncionalidadRepo repo;
-	
-	@Autowired
-	private IRolMenuRepo repoMR;
 	
 	@Override
 	public SisRolFuncionalidad registrar(SisRolFuncionalidad t) {
