@@ -25,12 +25,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
-import aate.gob.pe.DTO.Login;
 import aate.gob.pe.model.Usuario;
-import aate.gob.pe.repo.ISistemaRepo;
 import aate.gob.pe.repo.IUsuarioRepo;
 import aate.gob.pe.service.IUsuarioService;
-import aate.gob.pe.util.Encriptador;
 
 @Service
 @Configuration
@@ -106,50 +103,6 @@ public class UsuarioServiceImp implements UserDetailsService, IUsuarioService {
 	}
 
 	@Override
-	public List<Usuario> dniFindAll(String dni) {
-
-		List<Usuario> lista = new ArrayList<>();
-		repo.dniFindAll(dni).forEach(x -> {
-			Usuario cr = new Usuario();
-			cr.setUSUCOD(Integer.parseInt(String.valueOf(x[0])));
-			cr.setUSUDNI(String.valueOf(x[1]));
-			cr.setUSUNOM(String.valueOf(x[2]));
-			cr.setUSUAPEPAT(String.valueOf(x[3]));
-			cr.setUSUAPEMAT(String.valueOf(x[4]));
-			cr.setUSUCOR(String.valueOf(x[5]));
-			cr.setUSULOG(String.valueOf(x[6]));
-			// cr.setUSUFOT(byte[] (x[7]));
-			try {
-				cr.setUSUPAS(Encriptador.Encriptar("123"));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			lista.add(cr);
-		});
-		return lista;
-		// return null;
-	}
-
-	@Override
-	public List<Usuario> loginFindAll(String login) {
-
-		List<Usuario> lista = new ArrayList<>();
-		repo.loginFindAll(login).forEach(x -> {
-			Usuario cr = new Usuario();
-			cr.setUSUCOD(Integer.parseInt(String.valueOf(x[0])));
-			cr.setUSUDNI(String.valueOf(x[1]));
-			cr.setUSUNOM(String.valueOf(x[2]));
-			cr.setUSUAPEPAT(String.valueOf(x[3]));
-			cr.setUSUAPEMAT(String.valueOf(x[4]));
-			cr.setUSUCOR(String.valueOf(x[5]));
-			cr.setUSULOG(String.valueOf(x[6]));
-			lista.add(cr);
-		});
-		return lista;
-	}
-
-	@Override
 	public Usuario BuscarUsuarioLdap(String user) {
 		Usuario beUsuario = new Usuario();
 
@@ -216,12 +169,6 @@ public class UsuarioServiceImp implements UserDetailsService, IUsuarioService {
 		}
 
 		return null;
-	}
-
-	@Override
-	public int validaAcceso(Login login) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }

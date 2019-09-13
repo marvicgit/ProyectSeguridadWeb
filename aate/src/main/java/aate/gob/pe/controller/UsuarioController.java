@@ -35,12 +35,6 @@ public class UsuarioController {
 		return service.listar();
 	}
 	
-	@GetMapping("/{dni}")
-	public List<Usuario> leerDNI(@PathVariable("dni") String dni)
-	{
-		return service.dniFindAll(dni);
-	}
-	
 //	@PostMapping
 //	public ResponseEntity<Usuario> registrar(@RequestBody Usuario usuario) {
 //		Usuario usu = service.registrar(usuario);
