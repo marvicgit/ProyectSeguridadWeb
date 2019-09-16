@@ -44,6 +44,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
 	
+	@Autowired
+	private CustomAuthenticationProvider customAuthenticationProvider;
+	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -58,7 +61,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired	
 	public void configure(AuthenticationManagerBuilder auth) throws Exception{
-		auth.userDetailsService(userDetailsService).passwordEncoder(bcrypt);
+		auth.authenticationProvider(customAuthenticationProvider);
+		//auth.userDetailsService(userDetailsService).passwordEncoder(bcrypt);
 	}
 	
 	@Override

@@ -12,7 +12,7 @@ import aate.gob.pe.model.Sistema;
 public interface ISistemaRepo extends JpaRepository<Sistema, Integer> {
 	
 	@Query(value = "SELECT s FROM Sistema s where s.SISSIG = :sigla")
-	List<Sistema> siglaFindAll(@Param("sigla") String sigla);
+	Sistema siglaFindAll(@Param("sigla") String sigla);
 	
 	@Query("from Sistema s where LOWER(s.SISNOM)  like %:SISNOM% or lower(s.SISSIG) like %:SISSIG% or s.SISEST = :SISEST")
 	List<Sistema> buscarSistema( @Param("SISNOM")String SISNOM,  @Param("SISSIG")String SISSIG, @Param("SISEST")char SISEST );

@@ -15,6 +15,7 @@ import javax.naming.ldap.LdapContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -24,7 +25,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import aate.gob.pe.config.UserPrincipal;
 import aate.gob.pe.model.Usuario;
 import aate.gob.pe.repo.IUsuarioRepo;
 import aate.gob.pe.service.IUsuarioService;
@@ -70,6 +73,17 @@ public class UsuarioServiceImp implements UserDetailsService, IUsuarioService {
 		
 		return userDetails;
 	}
+	
+	 @Transactional
+	    public UserDetails loadUserByUsulog(String username) {
+	        Usuario user = userRepo.buscarUsuarioxLogin(username);
+	        
+	        if(user == null) {
+	        	throw new BadCredentialsException("Authentication Failed!!!");
+	        }
+
+	        return UserPrincipal.create(user);
+	    }
 	
 	@Override
 	public Usuario registrar(Usuario t) {
