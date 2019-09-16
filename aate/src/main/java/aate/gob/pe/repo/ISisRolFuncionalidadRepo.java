@@ -5,7 +5,12 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import aate.gob.pe.DTO.FuncionalidadDTO;
+import aate.gob.pe.DTO.MenuDTO;
+import aate.gob.pe.DTO.RolDTO;
+import aate.gob.pe.DTO.RolMenuFuncDTO;
 import aate.gob.pe.DTO.SisRolFuncionalidadDTO;
 import aate.gob.pe.model.SisRolFuncionalidad;
 
@@ -15,22 +20,16 @@ public interface ISisRolFuncionalidadRepo extends JpaRepository<SisRolFuncionali
 	  @Query(value = "select distinct new aate.gob.pe.DTO.SisRolFuncionalidadDTO(srf.SISROLFUNCOD, s,r,f) from SisRolFuncionalidad srf join srf.rol r join srf.funcionalidad f join Sistema s on s.SISCOD = srf.SISCOD ")
 	  List<SisRolFuncionalidadDTO> listaSistemaRolFun();
 	  
-	 /* @Transactional
-	 * 
-	 * @Modifying
-	 * 
-	 * @Query(value =
-	 * "delete from RolMenuFuncionalidad fun where fun.ROLMENFUNCOD in ( select rmf.ROLMENFUNCOD from RolMenuFuncionalidad rmf "
-	 * +
-	 * "join rmf.rolMenu rm join rm.menu m join m.sistema s join rm.rol r join rmf.funcionalidad f "
-	 * + "where s.SISCOD = :siscod and r.ROLCOD = :rolcod and f.FUNCOD = :funcod )")
-	 * void eliminarRolMenFunc(@Param("siscod") Integer siscod, @Param("rolcod")
-	 * Integer rolcod, @Param("funcod") Integer funcod);
-	 * 
-	 * @Query(value =
-	 * "select rmf.ROLMENFUNCOD from RolMenuFuncionalidad rmf join rmf.rolMenu rm join rm.menu m join m.sistema s join rm.rol r join rmf.funcionalidad f where s.SISCOD = :siscod and r.ROLCOD = :rolcod"
-	 * ) List<Integer> buscarIdRolMenuFunxSistema(@Param("siscod") Integer
-	 * siscod, @Param("rolcod") Integer rolcod);
-	 */
+	  @Query(value = "select new aate.gob.pe.DTO.RolDTO(r.ROLNOM, TRIM(r.ROLSIG)) from  UserSisRolFuncionalidad usrf  inner join usrf.rol r inner join usrf.usuario u inner join Sistema s on usrf.SISCOD = s.SISCOD  and s.SISEST ='1' where s.SISSIG = :vSissig and u.USULOG = :vUsulog ")
+      List<RolDTO>listaRol(@Param("vSissig") String vSissig, @Param("vUsulog") String  vUsulog);
+          
+      @Query(value ="select distinct new aate.gob.pe.DTO.MenuDTO( m.MENCOD,m.MENNOM, m.MENORD, m.MENICO ,m.MENRUT,m.padre.MENCOD) from UserSisRolFuncionalidad usrf inner join usrf.rol r inner join RolMenu rm on rm.rol = r and rm.SISCOD = usrf.SISCOD inner join rm.menu m inner join m.sistema s inner join usrf.usuario u where s.SISSIG = :vSissig and u.USULOG = :vUsulog ORDER BY m.MENORD ASC")
+      List<MenuDTO>listaMenu(@Param("vSissig") String vSissig, @Param("vUsulog") String  vUsulog);
+    
+      @Query(value ="select new aate.gob.pe.DTO.FuncionalidadDTO(f.FUNNOM, TRIM(f.FUNSIG) ) from UserSisRolFuncionalidad usrf inner join usrf.rol r inner join SisRolFuncionalidad srf on srf.rol = r inner join srf.funcionalidad f inner join usrf.usuario u inner join Sistema s on s.SISCOD = usrf.SISCOD where s.SISSIG = :vSissig and u.USULOG = :vUsulog ")
+      List<FuncionalidadDTO>listaFuncionalidad(@Param("vSissig") String vSissig, @Param("vUsulog") String  vUsulog);
+      
+      @Query(value="select distinct new aate.gob.pe.DTO.RolMenuFuncDTO(s.SISSIG, u.USULOG, u.USUCOD) from UserSisRolFuncionalidad usrf inner join usrf.usuario u inner join Sistema s on s.SISCOD = usrf.SISCOD where s.SISSIG = :vSissig and u.USULOG = :vUsulog")
+      RolMenuFuncDTO ObtenerAcceso(@Param("vSissig") String vSissig, @Param("vUsulog") String  vUsulog);
 	
 }

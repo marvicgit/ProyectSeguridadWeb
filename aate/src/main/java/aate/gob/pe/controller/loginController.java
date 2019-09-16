@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import aate.gob.pe.DTO.RolMenuFuncDTO;
+import aate.gob.pe.exception.ModeloNotFoundException;
 import aate.gob.pe.model.ResetToken;
 import aate.gob.pe.model.Usuario;
 import aate.gob.pe.service.ILoginService;
 import aate.gob.pe.service.IResetTokenService;
+import aate.gob.pe.service.ISisRolFuncionalidadService;
 import aate.gob.pe.util.EmailService;
 import aate.gob.pe.util.Mail;
 
@@ -38,6 +41,9 @@ public class loginController {
 
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
+	
+	@Autowired
+    private ISisRolFuncionalidadService eservice;
 	
 
 	@PostMapping(value = "/enviarCorreo", consumes = MediaType.TEXT_PLAIN_VALUE)
@@ -118,4 +124,17 @@ public class loginController {
 		}
 		return new ResponseEntity<Integer>(rpta, HttpStatus.OK);
 	}
+
+	@PostMapping(value = "/permisos")
+    public ResponseEntity <RolMenuFuncDTO>acceso(@RequestBody RolMenuFuncDTO entidad)
+    {
+          RolMenuFuncDTO beEntidad = eservice.obtenerAcceso(entidad.getSissig(), entidad.getUsulog());
+          if(beEntidad== null)
+          {
+                 throw new ModeloNotFoundException("Usuario no registrado");
+          }
+          
+          return new ResponseEntity<RolMenuFuncDTO>(beEntidad, HttpStatus.OK);
+    }
+
 }

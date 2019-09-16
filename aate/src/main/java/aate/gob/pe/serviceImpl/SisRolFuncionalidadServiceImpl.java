@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import aate.gob.pe.DTO.RolFuncionalidadDTO;
+import aate.gob.pe.DTO.RolMenuFuncDTO;
 import aate.gob.pe.DTO.SisRolFuncionalidadDTO;
 import aate.gob.pe.model.Rol;
 import aate.gob.pe.model.SisRolFuncionalidad;
@@ -84,5 +85,27 @@ public class SisRolFuncionalidadServiceImpl implements ISisRolFuncionalidadServi
 		// TODO Auto-generated method stub
 		return null; //repo.buscarIdRolMenuFunxSistema(siscod, rolcod);
 	}
+	
+	@Override
+    public RolMenuFuncDTO obtenerAcceso(String vSissig, String vUsulog) {
+          RolMenuFuncDTO entidad = new RolMenuFuncDTO();
+
+          try {
+                 entidad.setRoles(repo.listaRol(vSissig, vUsulog));
+                 entidad.setMenus(repo.listaMenu(vSissig, vUsulog));
+                 entidad.setFuncionalidades(repo.listaFuncionalidad(vSissig, vUsulog));
+                 RolMenuFuncDTO beEntidad = new RolMenuFuncDTO();
+                 beEntidad = repo.ObtenerAcceso(vSissig, vUsulog);
+                 entidad.setSissig(beEntidad.getSissig());
+                 entidad.setUsulog(beEntidad.getUsulog());
+                 entidad.setUsucod(beEntidad.getUsucod());
+          } catch (Exception ex) {
+                 entidad = null;
+
+          }
+
+          return entidad;
+    }
+
 
 }

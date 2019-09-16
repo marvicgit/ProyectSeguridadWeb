@@ -27,6 +27,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import aate.gob.pe.DTO.ReporteDTO;
 import aate.gob.pe.config.UserPrincipal;
 import aate.gob.pe.model.Usuario;
 import aate.gob.pe.repo.IUsuarioRepo;
@@ -183,6 +184,12 @@ public class UsuarioServiceImp implements UserDetailsService, IUsuarioService {
 		}
 
 		return null;
+	}
+
+	@Override
+	public List<ReporteDTO> ObtenerDetalleUsusario() {
+		// TODO Auto-generated method stub
+		return repo.ObtenerDetalleUsusario();
 	}
 
 }
