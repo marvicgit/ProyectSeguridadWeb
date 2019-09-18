@@ -44,8 +44,14 @@ public class UsuarioController {
 	
 	@PutMapping
 	public ResponseEntity<Usuario> modificar(@RequestBody Usuario usuario) {
+		if(usuario.getUSUPAS() == null || usuario.getUSUPAS().trim() == "") {
+			Usuario objeto = service.leer(usuario.getUSUCOD());
+			usuario.setUSUPAS(objeto.getUSUPAS());
+		} else {
+			usuario.setUSUPAS(bcrypt.encode(usuario.getUSUPAS()));
+		}
+		usuario.setFECMOD(LocalDate.now());
 		Usuario usu = service.modificar(usuario);
-		usu.setFECMOD(LocalDate.now());
 		return new ResponseEntity<Usuario>(usu, HttpStatus.OK);
 	}
 
