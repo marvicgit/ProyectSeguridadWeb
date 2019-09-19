@@ -7,17 +7,17 @@ public class ReporteDTO {
 	private String usulog;
 	private Integer rolcod;
 	private String rolnom;
-	private Integer usuest;
+	private Integer estreg;
 	
 	
-	public ReporteDTO(Integer siscod, String sisnom, String usulog, Integer rolcod, String rolnom, Integer usuest) {
+	public ReporteDTO(Integer siscod, String sisnom, String usulog, Integer rolcod, String rolnom, Integer estreg) {
 		super();
 		this.siscod = siscod;
 		this.sisnom = sisnom;
 		this.usulog = usulog;
 		this.rolcod = rolcod;
 		this.rolnom = rolnom;
-		this.usuest = usuest;
+		this.estreg = estreg;
 	}
 	
 	public String getUsulog() {
@@ -52,11 +52,11 @@ public class ReporteDTO {
 	public void setRolnom(String rolnom) {
 		this.rolnom = rolnom;
 	}
-	public Integer getUsuest() {
-		return usuest;
+	public Integer getEstreg() {
+		return estreg;
 	}
-	public void setUsuest(Integer usuest) {
-		this.usuest = usuest;
+	public void setUsuest(Integer estreg) {
+		this.estreg = estreg;
 	}
 
 	

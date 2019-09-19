@@ -11,9 +11,9 @@ public class OauthRefreshToken {
 	 @Id
 	  @Column(name = "TOKEN_ID", nullable = true)
 	  private String token_id;
-	 @Column(name = "TOKEN", nullable = true,columnDefinition = "blob")
+	 @Column(name = "TOKEN", nullable = true)
 	  private byte[] token;
-	 @Column(name = "AUTHENTICATION", nullable = true,columnDefinition = "blob")
+	 @Column(name = "AUTHENTICATION", nullable = true)
 	  private byte[] authentication;
 	public String getToken_id() {
 		return token_id;

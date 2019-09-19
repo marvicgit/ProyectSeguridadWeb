@@ -18,7 +18,7 @@ public interface IUsuarioRepo extends JpaRepository<Usuario, Integer> {
 	@Query(value = "select r from UserSisRolFuncionalidad usr inner join usr.rol r inner join usr.usuario u inner join Sistema s on s.SISCOD = usr.SISCOD WHERE u.USULOG = :username and s.SISSIG = :sissig")
 	List<Rol> getUserRoleDetails(String username, String sissig);
 	
-	@Query(value = "select new aate.gob.pe.DTO.ReporteDTO(s.SISCOD, s.SISNOM, u.USULOG, r.ROLCOD, r.ROLNOM, u.USUEST)  from UserSisRolFuncionalidad usr inner join usr.rol r inner join usr.usuario u inner join Sistema s on s.SISCOD = usr.SISCOD")
+	@Query(value = "select new aate.gob.pe.DTO.ReporteDTO(s.SISCOD, s.SISNOM, u.USULOG, r.ROLCOD, r.ROLNOM, u.ESTREG)  from UserSisRolFuncionalidad usr inner join usr.rol r inner join usr.usuario u inner join Sistema s on s.SISCOD = usr.SISCOD")
 	List<ReporteDTO> ObtenerDetalleUsusario();
 
 }

@@ -18,6 +18,7 @@ import javax.persistence.Table;
 public class UserSisRolFuncionalidad {
 	
 	@Id
+	//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACSE_SQ_USESISROL")
     @SequenceGenerator(sequenceName = "ACSE_SQ_USESISROL", allocationSize = 1, name = "ACSE_SQ_USESISROL")
 	@Column(name = "USUSISROLCOD")
@@ -42,8 +43,8 @@ public class UserSisRolFuncionalidad {
 	private String USUMOD;
 	@Column(name = "FECMOD", nullable = true)
 	private LocalDate FECMOD;
-	@Column(name = "ESTREG")
-	private char ESTREG = '1';
+	@Column(name = "ESTREG", nullable = true, length = 3)
+	private Integer ESTREG = 1;
 
 	
 	public Integer getSISCOD() {
@@ -94,10 +95,10 @@ public class UserSisRolFuncionalidad {
 	public void setFECMOD(LocalDate fECMOD) {
 		FECMOD = fECMOD;
 	}
-	public char getESTREG() {
+	public Integer getESTREG() {
 		return ESTREG;
 	}
-	public void setESTREG(char eSTREG) {
+	public void setESTREG(Integer eSTREG) {
 		ESTREG = eSTREG;
 	}
 }

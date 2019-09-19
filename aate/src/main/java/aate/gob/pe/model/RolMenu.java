@@ -19,6 +19,7 @@ import javax.persistence.Table;
 public class RolMenu {
 	
 	@Id
+	//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACSE_SQ_ROL_MENU")
     @SequenceGenerator(sequenceName = "ACSE_SQ_ROL_MENU", allocationSize = 1, name = "ACSE_SQ_ROL_MENU")
 	@Column(name = "ROLMENCOD")
@@ -43,8 +44,8 @@ public class RolMenu {
 	private String USUMOD;
 	@Column(name = "FECMOD", nullable = true)
 	private LocalDate FECMOD;
-	@Column(name = "ESTREG")
-	private char ESTREG;
+	@Column(name = "ESTREG", nullable = true, length = 3)
+	private Integer ESTREG;
 	
 	
 	public Integer getSISCOD() {
@@ -95,10 +96,10 @@ public class RolMenu {
 	public void setFECMOD(LocalDate fECMOD) {
 		FECMOD = fECMOD;
 	}
-	public char getESTREG() {
+	public Integer getESTREG() {
 		return ESTREG;
 	}
-	public void setESTREG(char eSTREG) {
+	public void setESTREG(Integer eSTREG) {
 		ESTREG = eSTREG;
 	}
 	

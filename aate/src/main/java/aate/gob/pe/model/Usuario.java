@@ -10,20 +10,19 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 
 @Table(name="ACSE_TM_USUARIO")
 @Entity(name = "Usuario")
 public class Usuario {
 	@Id
+	//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACSE_SQ_USUARIO")
     @SequenceGenerator(sequenceName = "ACSE_SQ_USUARIO", allocationSize = 1, name = "ACSE_SQ_USUARIO")
 	@Column(name = "USUCOD")
-	private int USUCOD;
-	@Column(name = "USUTIPDOC",nullable = true, columnDefinition = "integer")
+	private Integer USUCOD;
+	@Column(name = "USUTIPDOC",nullable = true, length = 3)
 	private int USUTIPDOC;
-	@Column(name = "USUDNI", columnDefinition = "char(11)" )
+	@Column(name = "USUDNI",nullable = true, length = 12 )
 	private String USUDNI;
 	@Column(name = "USUNOM",nullable = true, length = 50)
 	private String USUNOM;
@@ -31,7 +30,7 @@ public class Usuario {
 	private String USUAPEPAT;
 	@Column(name = "USUAPEMAT",nullable = true, length = 50)
 	private String USUAPEMAT;
-	@Column(name = "USUSEXO",nullable = true, columnDefinition = "integer")
+	@Column(name = "USUSEXO",nullable = true, length = 1)
 	private int USUSEXO;
 	@Column(name = "USUAREA",nullable = true, length = 100)
 	private String USUAREA;
@@ -47,22 +46,20 @@ public class Usuario {
 	private String USUPAS;
 	@Column(name = "USUPASSAL",nullable = true, length = 50)
 	private String USUPASSAL;
-	@Column(name = "PRECOD")
+	@Column(name = "PRECOD",nullable = true, length = 3)
 	private Integer PRECOD;
 	@Column(name = "USURESSEC",nullable = true, length = 300)
 	private String USURESSEC;
 	@Column(name = "USURESSAL",nullable = true, length = 50)
 	private String USURESSAL;
-	@Column(name = "USUBLO", nullable = true,columnDefinition = "char(1)" )
-	private char USUBLO;
-	@Column(name = "USUDCP",nullable = true,columnDefinition = "char(1)" )
-	private char USUDCP;
-	@Column(name = "USUNCP",nullable = true,columnDefinition = "char(1)" )
-	private char USUNCP;
-	@Column(name = "USUPNE",nullable = true,columnDefinition = "char(1)" )
-	private char USUPNE;
-	@Column(name = "USUEST",nullable = true)
-	private Integer USUEST;
+	@Column(name = "USUBLO", nullable = true, length = 1)
+	private Integer USUBLO;
+	@Column(name = "USUDCP",nullable = true, length = 1)
+	private Integer USUDCP;
+	@Column(name = "USUNCP",nullable = true, length = 1 )
+	private Integer USUNCP;
+	@Column(name = "USUPNE",nullable = true, length = 1 )
+	private Integer USUPNE;
 	@Column(name = "USUREG",nullable = true, length = 30)
 	private String USUREG;
 	@Column(name = "FECREG",nullable = true)
@@ -71,8 +68,8 @@ public class Usuario {
 	private String USUMOD;
 	@Column(name = "FECMOD",nullable = true)
 	private LocalDate FECMOD;
-	@Column(name = "ESTREG",nullable = true,columnDefinition = "char(1)" )
-	private char ESTREG;
+	@Column(name = "ESTREG",nullable = true,length = 3 )
+	private Integer ESTREG;
 	@Column(name = "USUFOT", updatable = false)
 	private byte[] USUFOT;
 	@Column(name = "USUFIR", updatable = false)
@@ -87,10 +84,10 @@ public class Usuario {
 	private String USUTEFMOVIL;  
 	@Column(name = "USUANEXO",nullable = true, length = 10)
 	private String USUANEXO;
-	public int getUSUCOD() {
+	public Integer getUSUCOD() {
 		return USUCOD;
 	}
-	public void setUSUCOD(int uSUCOD) {
+	public void setUSUCOD(Integer uSUCOD) {
 		USUCOD = uSUCOD;
 	}
 	public String getUSUDNI() {
@@ -159,35 +156,29 @@ public class Usuario {
 	public void setUSURESSAL(String uSURESSAL) {
 		USURESSAL = uSURESSAL;
 	}
-	public char getUSUBLO() {
+	public Integer getUSUBLO() {
 		return USUBLO;
 	}
-	public void setUSUBLO(char uSUBLO) {
+	public void setUSUBLO(Integer uSUBLO) {
 		USUBLO = uSUBLO;
 	}
-	public char getUSUDCP() {
+	public Integer getUSUDCP() {
 		return USUDCP;
 	}
-	public void setUSUDCP(char uSUDCP) {
+	public void setUSUDCP(Integer uSUDCP) {
 		USUDCP = uSUDCP;
 	}
-	public char getUSUNCP() {
+	public Integer getUSUNCP() {
 		return USUNCP;
 	}
-	public void setUSUNCP(char uSUNCP) {
+	public void setUSUNCP(Integer uSUNCP) {
 		USUNCP = uSUNCP;
 	}
-	public char getUSUPNE() {
+	public Integer getUSUPNE() {
 		return USUPNE;
 	}
-	public void setUSUPNE(char uSUPNE) {
+	public void setUSUPNE(Integer uSUPNE) {
 		USUPNE = uSUPNE;
-	}
-	public Integer getUSUEST() {
-		return USUEST;
-	}
-	public void setUSUEST(Integer uSUEST) {
-		USUEST = uSUEST;
 	}
 	public String getUSUREG() {
 		return USUREG;
@@ -213,10 +204,10 @@ public class Usuario {
 	public void setFECMOD(LocalDate fECMOD) {
 		FECMOD = fECMOD;
 	}
-	public char getESTREG() {
+	public Integer getESTREG() {
 		return ESTREG;
 	}
-	public void setESTREG(char eSTREG) {
+	public void setESTREG(Integer eSTREG) {
 		ESTREG = eSTREG;
 	}
 	public byte[] getUSUFOT() {

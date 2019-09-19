@@ -15,18 +15,11 @@ import javax.persistence.Table;
 public class Funcionalidad {
 
 	@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACSE_SQ_FUNCIONALIDAD")
     @SequenceGenerator(sequenceName = "ACSE_SQ_FUNCIONALIDAD", allocationSize = 1, name = "ACSE_SQ_FUNCIONALIDAD")
 	@Column(name = "FUNCOD")
 	private Integer FUNCOD;
-	
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name = "SISCOD",nullable = true, foreignKey = @ForeignKey(name =
-	 * "FK_ACSE_TM_FUNC_TB_SISTEMA")) private Sistema sistema;
-	 */
-	
 	
 	@Column(name = "FUNNOM", nullable = true,length = 50)
 	private String FUNNOM;
@@ -34,8 +27,6 @@ public class Funcionalidad {
 	private String FUNDES;
 	@Column(name = "FUNSIG", nullable = true, length = 20)
 	private String FUNSIG;
-	@Column(name = "FUNEST", nullable = true, columnDefinition = "CHAR(1)")
-	private char FUNEST;
 	@Column(name = "USUREG", nullable = true,length = 30)
 	private String USUREG;
 	@Column(name = "FECREG", nullable = true)
@@ -44,8 +35,8 @@ public class Funcionalidad {
 	private String USUMOD;
 	@Column(name = "FECMOD", nullable = true)
 	private LocalDate FECMOD;
-	@Column(name = "ESTREG")
-	private char ESTREG;
+	@Column(name = "ESTREG", nullable = true, length = 3)
+	private Integer ESTREG;
 	
 	
 	
@@ -78,12 +69,7 @@ public class Funcionalidad {
 	public void setFUNSIG(String fUNSIG) {
 		FUNSIG = fUNSIG;
 	}
-	public char getFUNEST() {
-		return FUNEST;
-	}
-	public void setFUNEST(char fUNEST) {
-		FUNEST = fUNEST;
-	}
+
 	public String getUSUREG() {
 		return USUREG;
 	}
@@ -108,10 +94,10 @@ public class Funcionalidad {
 	public void setFECMOD(LocalDate fECMOD) {
 		FECMOD = fECMOD;
 	}
-	public char getESTREG() {
+	public Integer getESTREG() {
 		return ESTREG;
 	}
-	public void setESTREG(char eSTREG) {
+	public void setESTREG(Integer eSTREG) {
 		ESTREG = eSTREG;
 	}
 	

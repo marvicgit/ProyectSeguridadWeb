@@ -11,7 +11,7 @@ public class OauthAccesToken {
 	  @Id
 	  @Column(name = "TOKEN_ID", nullable = true)
 	  private String token_id;
-	  @Column(name = "TOKEN", nullable = true,columnDefinition = "blob")
+	  @Column(name = "TOKEN", nullable = true)
 	  private byte[] token;
 	  @Column(name = "AUTHENTICATION_ID", nullable = true)
 	  private String authentication_id;
@@ -19,7 +19,7 @@ public class OauthAccesToken {
 	  private String user_name;
 	  @Column(name = "CLIENT_ID", nullable = true)
 	  private String client_id;
-	  @Column(name = "AUTHENTICATION", nullable = true,columnDefinition = "blob")
+	  @Column(name = "AUTHENTICATION", nullable = true)
 	  private byte[] authentication;
 	  @Column(name = "REFRESH_TOKEN", nullable = true)
 	  private String refresh_token;

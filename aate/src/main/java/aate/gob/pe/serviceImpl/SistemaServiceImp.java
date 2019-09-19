@@ -66,7 +66,7 @@ public class SistemaServiceImp implements ISistemaService {
 
 	@Override
 	public List<Sistema> buscarSistema(Sistema filtro) {
-		return repo.buscarSistema(filtro.getSISNOM(), filtro.getSISSIG(), filtro.getSISEST());
+		return repo.buscarSistema(filtro.getSISNOM(), filtro.getSISSIG(), filtro.getESTREG());
 		
 	}
 

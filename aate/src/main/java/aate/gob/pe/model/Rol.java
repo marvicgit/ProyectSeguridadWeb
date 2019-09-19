@@ -17,35 +17,18 @@ public class Rol {
 	
 
 	@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACSE_SQ_ROL")
     @SequenceGenerator(sequenceName = "ACSE_SQ_ROL", allocationSize = 1, name = "ACSE_SQ_ROL")
 	@Column(name = "ROLCOD")
 	private Integer ROLCOD;
 	
-	/*
-	 * @JsonIgnore
-	 * 
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name = "SISCOD",nullable = true, foreignKey = @ForeignKey(name =
-	 * "FK_ACSE_TM_ROL_TB_SISTEMA")) private Sistema sistema;
-	 */
-	
 	@Column(name = "ROLNOM", nullable = true,length = 50)
 	private String ROLNOM;
-	
-	public String getROLNOM() {
-		return ROLNOM;
-	}
-	public void setROLNOM(String rOLNOM) {
-		ROLNOM = rOLNOM;
-	}
 	@Column(name = "ROLDES", nullable = true,length = 100)
 	private String ROLDES;
-	@Column(name = "ROLSIG", nullable = true, columnDefinition = "char(20)")
+	@Column(name = "ROLSIG", nullable = true, length = 20)
 	private String ROLSIG;
-	@Column(name = "ROLEST", nullable = true, length = 20)
-	private char ROLEST;
 	@Column(name = "USUREG", nullable = true,length = 30)
 	private String USUREG;
 	@Column(name = "FECREG", nullable = true)
@@ -54,19 +37,22 @@ public class Rol {
 	private String USUMOD;
 	@Column(name = "FECMOD", nullable = true)
 	private LocalDate FECMOD;
-	@Column(name = "ESTREG")
-	private char ESTREG;
+	@Column(name = "ESTREG", nullable = true, length = 3)
+	private Integer ESTREG;
+	
+	public String getROLNOM() {
+		return ROLNOM;
+	}
+	public void setROLNOM(String rOLNOM) {
+		ROLNOM = rOLNOM;
+	}
+	
 	public Integer getROLCOD() {
 		return ROLCOD;
 	}
 	public void setROLCOD(Integer rOLCOD) {
 		ROLCOD = rOLCOD;
 	}
-
-	/*
-	 * public Sistema getSistema() { return sistema; } public void
-	 * setSistema(Sistema sistema) { this.sistema = sistema; }
-	 */
 	public String getROLDES() {
 		return ROLDES;
 	}
@@ -78,12 +64,6 @@ public class Rol {
 	}
 	public void setROLSIG(String rOLSIG) {
 		ROLSIG = rOLSIG;
-	}
-	public char getROLEST() {
-		return ROLEST;
-	}
-	public void setROLEST(char rOLEST) {
-		ROLEST = rOLEST;
 	}
 	public String getUSUREG() {
 		return USUREG;
@@ -109,10 +89,10 @@ public class Rol {
 	public void setFECMOD(LocalDate fECMOD) {
 		FECMOD = fECMOD;
 	}
-	public char getESTREG() {
+	public Integer getESTREG() {
 		return ESTREG;
 	}
-	public void setESTREG(char eSTREG) {
+	public void setESTREG(Integer eSTREG) {
 		ESTREG = eSTREG;
 	}
 	

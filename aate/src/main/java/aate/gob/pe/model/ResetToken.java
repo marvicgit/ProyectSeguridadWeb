@@ -22,6 +22,7 @@ import javax.persistence.Table;
 public class ResetToken implements Serializable{
 
 	@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACSE_SQ_TOKEN_RESET")
     @SequenceGenerator(sequenceName = "ACSE_SQ_TOKEN_RESET", allocationSize = 1, name = "ACSE_SQ_TOKEN_RESET")
 	@Column(name = "ID")

@@ -1,6 +1,6 @@
 ### CREACION DE JAR ###
 FROM maven:3.6-jdk-8-alpine AS builder
-COPY dependencias/ojdbc7-12.1.0.1.jar /root/.m2/repository/com/oracle/ojdbc7/12.1.0.1/
+# COPY dependencias/ojdbc7-12.1.0.1.jar /root/.m2/repository/com/oracle/ojdbc7/12.1.0.1/
 WORKDIR /app
 COPY pom.xml .
 
@@ -19,11 +19,11 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 #COPY ./target/aate*.jar /app.jar
 COPY --from=builder /app/target/*.jar /app.jar
 
-ENV host="oraclexe"
-# ENV database="cineapp"
-# ENV username="postgres"
-# ENV password="123"
-# ENV hostapi="http://apiacceso:9999/acceso/user"
+ENV host="postgres_server"
+ENV database="sisacse"
+ENV username="postgres"
+ENV password="123"
+
 
 ENTRYPOINT exec java -jar /app.jar
 EXPOSE 8080

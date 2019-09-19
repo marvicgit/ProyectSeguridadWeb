@@ -15,6 +15,7 @@ import javax.persistence.Table;
 public class Sistema {
 	
 	@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACSE_SQ_SISTEMA")
     @SequenceGenerator(sequenceName = "ACSE_SQ_SISTEMA", allocationSize = 1, name = "ACSE_SQ_SISTEMA")
 	@Column(name = "SISCOD")
@@ -27,11 +28,6 @@ public class Sistema {
 	@Column(name = "SISSIG", nullable = true,length = 15)
 	private String SISSIG;
 	
-	@Column(name = "SISPAS",nullable = true, length = 100)
-	private String SISPAS;
-	
-	@Column(name = "SISEST", nullable = true, columnDefinition = "CHAR(1)")
-	private char SISEST;
 	@Column(name = "USUREG", nullable = true, length = 30)
 	private String USUREG;
 	@Column(name = "FECREG", nullable = true)
@@ -40,8 +36,8 @@ public class Sistema {
 	private String USUMOD;
 	@Column(name = "FECMOD", nullable = true)
 	private LocalDate FECMOD;
-	@Column(name = "ESTREG")
-	private char ESTREG;
+	@Column(name = "ESTREG", nullable = true,length = 3)
+	private Integer ESTREG;
 	public Integer getSISCOD() {
 		return SISCOD;
 	}
@@ -66,16 +62,10 @@ public class Sistema {
 	public void setSISSIG(String sISSIG) {
 		SISSIG = sISSIG;
 	}
-	public char getSISEST() {
-		return SISEST;
-	}
-	public void setSISEST(char sISEST) {
-		SISEST = sISEST;
-	}
-	public char getESTREG() {
+	public Integer getESTREG() {
 		return ESTREG;
 	}
-	public void setESTREG(char eSTREG) {
+	public void setESTREG(Integer eSTREG) {
 		ESTREG = eSTREG;
 	}
 	public String getUSUREG() {

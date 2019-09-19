@@ -59,8 +59,7 @@ public class AateApplication  {
 	    		objeto.setSISNOM("Sistema de Seguridad y Acceso");
 	    		objeto.setSISSIG("SISAC");
 	    		objeto.setSISDES("Sistema de Seguridad y Acceso");
-	    		objeto.setSISEST('1');
-	    		objeto.setESTREG('1');
+	    		objeto.setESTREG(1);
 				serviceSis.registrar(objeto);
 			}
 	    	
@@ -71,107 +70,100 @@ public class AateApplication  {
 	    		objeto = new Menu();
 	    		objeto.setMENNOM("Sistema");
 	    		objeto.setMENICO("fa-desktop");
-	    		objeto.setMENEST('1');
 	    		objeto.setMENORD(10);
 	    		objeto.setMENRUT("/sistema");
-	    		//objeto.setMENSIG('SISAC_MNU_SISTEMA');
+	    		objeto.setMENSIG("SISAC_MNU_SISTEMA");
 	    		objeto.setUSUREG("1");
-	    		objeto.setESTREG('1');
+	    		objeto.setESTREG(1);
 	    		objeto.setSistema(sis);
 	    		serviceMen.registrar(objeto);
 	    		
 	    		objeto = new Menu();
 	    		objeto.setMENNOM("Menu");
 	    		objeto.setMENICO("fa-th-list");
-	    		objeto.setMENEST('1');
 	    		objeto.setMENORD(20);
 	    		objeto.setMENRUT("/menu");
-	    		//objeto.setMENSIG('SISAC_MNU_MENU');
+	    		objeto.setMENSIG("SISAC_MNU_MENU");
 	    		objeto.setUSUREG("1");
-	    		objeto.setESTREG('1');
+	    		objeto.setESTREG(1);
 	    		objeto.setSistema(sis);
 	    		serviceMen.registrar(objeto);
 	    		
 	    		objeto = new Menu();
 	    		objeto.setMENNOM("Rol");
 	    		objeto.setMENICO("fa-user-md");
-	    		objeto.setMENEST('1');
 	    		objeto.setMENORD(30);
 	    		objeto.setMENRUT("/rol");
-	    		//objeto.setMENSIG('SISAC_MNU_ROL');
+	    		objeto.setMENSIG("SISAC_MNU_ROL");
 	    		objeto.setUSUREG("1");
-	    		objeto.setESTREG('1');
+	    		objeto.setESTREG(1);
 	    		objeto.setSistema(sis);
 	    		serviceMen.registrar(objeto);
 	    		
 	    		objeto = new Menu();
 	    		objeto.setMENNOM("Funcionalidad");
 	    		objeto.setMENICO("fa-wrench");
-	    		objeto.setMENEST('1');
 	    		objeto.setMENORD(40);
 	    		objeto.setMENRUT("/funcionalidad");
-	    		//objeto.setMENSIG('SISAC_MNU_FUNCIONALIDAD');
+	    		objeto.setMENSIG("SISAC_MNU_FUNC");
 	    		objeto.setUSUREG("1");
-	    		objeto.setESTREG('1');
+	    		objeto.setESTREG(1);
 	    		objeto.setSistema(sis);
 	    		serviceMen.registrar(objeto);
 	    		
 	    		objeto = new Menu();
 	    		objeto.setMENNOM("Asignar Menu - Rol");
 	    		objeto.setMENICO("fa-exchange");
-	    		objeto.setMENEST('1');
 	    		objeto.setMENORD(50);
 	    		objeto.setMENRUT("/rol-men");
-	    		//objeto.setMENSIG('SISAC_MNU_ROLMEN');
+	    		objeto.setMENSIG("SISAC_MNU_ROLMEN");
 	    		objeto.setUSUREG("1");
-	    		objeto.setESTREG('1');
+	    		objeto.setESTREG(1);
 	    		objeto.setSistema(sis);
 	    		serviceMen.registrar(objeto);
 	    		
 	    		objeto = new Menu();
 	    		objeto.setMENNOM("Asignar Func. - Rol");
 	    		objeto.setMENICO("fa-exchange");
-	    		objeto.setMENEST('1');
 	    		objeto.setMENORD(60);
 	    		objeto.setMENRUT("/rol-funcionalidad");
-	    		//objeto.setMENSIG('SISAC_MNU_ROLFUN');
+	    		objeto.setMENSIG("SISAC_MNU_ROLFUN");
 	    		objeto.setUSUREG("1");
-	    		objeto.setESTREG('1');
+	    		objeto.setESTREG(1);
 	    		objeto.setSistema(sis);
+	    		serviceMen.registrar(objeto);
 	    		
 	    		objeto = new Menu();
 	    		objeto.setMENNOM("Usuario");
 	    		objeto.setMENICO("fa-user");
-	    		objeto.setMENEST('1');
 	    		objeto.setMENORD(60);
 	    		objeto.setMENRUT("/usuario");
 	    		//objeto.setMENSIG('SISAC_MNU_USUARIO');
 	    		objeto.setUSUREG("1");
-	    		objeto.setESTREG('1');
+	    		objeto.setESTREG(1);
 	    		objeto.setSistema(sis);
+	    		serviceMen.registrar(objeto);
 	    		
 	    		objeto = new Menu();
 	    		objeto.setMENNOM("Sistema - Usuario");
 	    		objeto.setMENICO("fa-list-alt");
-	    		objeto.setMENEST('1');
 	    		objeto.setMENORD(70);
 	    		objeto.setMENRUT("/sis-usuario");
 	    		//objeto.setMENSIG('SISAC_MNU_SISUSU');
 	    		objeto.setUSUREG("1");
-	    		objeto.setESTREG('1');
+	    		objeto.setESTREG(1);
 	    		objeto.setSistema(sis);
+	    		serviceMen.registrar(objeto);
 	    		
 	    		objeto = new Menu();
 	    		objeto.setMENNOM("Reporte");
 	    		objeto.setMENICO("fa-table");
-	    		objeto.setMENEST('1');
 	    		objeto.setMENORD(70);
 	    		objeto.setMENRUT("/reporte");
 	    		//objeto.setMENSIG('SISAC_MNU_REPORTE');
 	    		objeto.setUSUREG("1");
-	    		objeto.setESTREG('1');
+	    		objeto.setESTREG(1);
 	    		objeto.setSistema(sis);
-	    		
 	    		serviceMen.registrar(objeto);
 			}
 	    	
@@ -181,7 +173,7 @@ public class AateApplication  {
 				objeto.setROLDES("ADMNISTRADOR");
 				objeto.setROLSIG("ROL_ADMIN");
 				objeto.setUSUREG("1");
-				objeto.setESTREG('1');
+				objeto.setESTREG(1);
 				serviceRol.registrar(objeto);
 			}
 	    	
@@ -191,7 +183,7 @@ public class AateApplication  {
 				objeto.setFUNDES("ADMINISTRADOR");
 				objeto.setFUNSIG("FUN_ADMIN");;
 				objeto.setUSUREG("1");
-				objeto.setESTREG('1');
+				objeto.setESTREG(1);
 				serviceFun.registrar(objeto);
 			}
 	    	
@@ -211,7 +203,8 @@ public class AateApplication  {
 				objeto.setMenu(menu);
 				objeto.setRol(rol);
 				objeto.setUSUREG("1");
-				objeto.setESTREG('1');
+				objeto.setESTREG(1);
+				serviceRolMen.registrar(objeto);
 				
 				menu = new Menu();
 	    		menu.setMENCOD(2);
@@ -221,7 +214,8 @@ public class AateApplication  {
 				objeto.setMenu(menu);
 				objeto.setRol(rol);
 				objeto.setUSUREG("1");
-				objeto.setESTREG('1');
+				objeto.setESTREG(1);
+				serviceRolMen.registrar(objeto);
 				
 				menu = new Menu();
 	    		menu.setMENCOD(3);
@@ -231,7 +225,8 @@ public class AateApplication  {
 				objeto.setMenu(menu);
 				objeto.setRol(rol);
 				objeto.setUSUREG("1");
-				objeto.setESTREG('1');
+				objeto.setESTREG(1);
+				serviceRolMen.registrar(objeto);
 				
 				menu = new Menu();
 	    		menu.setMENCOD(4);
@@ -241,7 +236,8 @@ public class AateApplication  {
 				objeto.setMenu(menu);
 				objeto.setRol(rol);
 				objeto.setUSUREG("1");
-				objeto.setESTREG('1');
+				objeto.setESTREG(1);
+				serviceRolMen.registrar(objeto);
 				
 				menu = new Menu();
 	    		menu.setMENCOD(5);
@@ -251,7 +247,8 @@ public class AateApplication  {
 				objeto.setMenu(menu);
 				objeto.setRol(rol);
 				objeto.setUSUREG("1");
-				objeto.setESTREG('1');
+				objeto.setESTREG(1);
+				serviceRolMen.registrar(objeto);
 				
 				menu = new Menu();
 	    		menu.setMENCOD(6);
@@ -261,7 +258,8 @@ public class AateApplication  {
 				objeto.setMenu(menu);
 				objeto.setRol(rol);
 				objeto.setUSUREG("1");
-				objeto.setESTREG('1');
+				objeto.setESTREG(1);
+				serviceRolMen.registrar(objeto);
 				
 				menu = new Menu();
 	    		menu.setMENCOD(7);
@@ -271,7 +269,8 @@ public class AateApplication  {
 				objeto.setMenu(menu);
 				objeto.setRol(rol);
 				objeto.setUSUREG("1");
-				objeto.setESTREG('1');
+				objeto.setESTREG(1);
+				serviceRolMen.registrar(objeto);
 				
 				menu = new Menu();
 	    		menu.setMENCOD(8);
@@ -281,7 +280,8 @@ public class AateApplication  {
 				objeto.setMenu(menu);
 				objeto.setRol(rol);
 				objeto.setUSUREG("1");
-				objeto.setESTREG('1');
+				objeto.setESTREG(1);
+				serviceRolMen.registrar(objeto);
 				
 				menu = new Menu();
 	    		menu.setMENCOD(9);
@@ -291,8 +291,7 @@ public class AateApplication  {
 				objeto.setMenu(menu);
 				objeto.setRol(rol);
 				objeto.setUSUREG("1");
-				objeto.setESTREG('1');
-				
+				objeto.setESTREG(1);
 				serviceRolMen.registrar(objeto);
 			}
 	    	
@@ -306,20 +305,20 @@ public class AateApplication  {
 	    		objeto.setRol(rol);
 	    		objeto.setFuncionalidad(fun);
 	    		objeto.setUSUREG("1");
-				objeto.setESTREG('1');
+				objeto.setESTREG(1);
+				serviceRolFun.registrar(objeto);
 	    	}
 	    	
 	    	if (service.listar().isEmpty()) {
 				Usuario us = new Usuario();
 				us.setUSUREG("1");
-				us.setESTREG('1');
+				us.setESTREG(1);
 				us.setPRECOD(1);
 				us.setUSUAPEPAT("CARRILLO");
 				us.setUSUAPEMAT("DURAND");
 				us.setUSUNOM("MARTIN");
-				us.setUSUBLO('0');
+				us.setUSUBLO(0);
 				us.setUSUDNI("43408900");
-				us.setUSUEST(1);
 				us.setUSUSEXO(1);
 				us.setUSUAREA("SISTEMAS");
 				us.setUSUCARGO("ANALISTA");
@@ -340,7 +339,8 @@ public class AateApplication  {
 	    		objeto.setRol(rol);
 	    		objeto.setUsuario(usu);
 	    		objeto.setUSUREG("1");
-				objeto.setESTREG('1');
+				objeto.setESTREG(1);
+				serviceSisUsu.registrar(objeto);
 	    	}
 	    	
 	    	/*if (serviceOauth.listar().isEmpty()) {
