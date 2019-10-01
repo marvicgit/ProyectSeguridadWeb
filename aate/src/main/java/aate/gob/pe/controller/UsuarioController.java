@@ -73,6 +73,7 @@ public class UsuarioController {
 	@PostMapping(produces = "application/json", consumes = "application/json")
 	private ResponseEntity<Object> registrar(@RequestBody Usuario usuario){		
 		usuario.setUSUPAS(bcrypt.encode(usuario.getUSUPAS()));
+		usuario.setUSUBLO(0);
 		service.registrar(usuario);
 		return new ResponseEntity<Object>(HttpStatus.CREATED);
 	}

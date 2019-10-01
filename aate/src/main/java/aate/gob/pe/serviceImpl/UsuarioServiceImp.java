@@ -147,10 +147,10 @@ public class UsuarioServiceImp implements UserDetailsService, IUsuarioService {
 				int x = 1;
 				while (var.hasMoreElements()) {
 					prop = var.next();
-					/*
-					 * System.out.println(x + " " + prop + ": " +
-					 * searchResult.getAttributes().get(prop).get()); x++;
-					 */
+					
+					 System.out.println(x + " " + prop + ": " +
+					 searchResult.getAttributes().get(prop).get()); x++;
+					 
 
 					if (prop.equals("mail")) {
 						beUsuario.setUSUCOR(searchResult.getAttributes().get(prop).get().toString());

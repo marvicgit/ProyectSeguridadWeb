@@ -23,9 +23,9 @@ spring:
     hibernate.ddl-auto: update
   datasource:
     #url: jdbc:oracle:thin:@//172.20.4.133:1521/orcl
-    url: jdbc:oracle:thin:@//${host}:1521/xe
-    username: ${username}
-    password: ${password}
+    url: jdbc:oracle:thin:@//172.19.0.113:1521/xe
+    username: SISACSE
+    password: 123
     driver-class-name: oracle.jdbc.OracleDriver
     
   mail:

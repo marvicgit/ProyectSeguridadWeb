@@ -1,5 +1,6 @@
 package aate.gob.pe.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +72,7 @@ public class SistemaController {
 	
 	@PutMapping
 	public ResponseEntity<Sistema> modificar(@RequestBody Sistema sistema) {
+		sistema.setFECMOD(LocalDate.now());
 		Sistema sis = service.modificar(sistema);
 		return new ResponseEntity<Sistema>(sis, HttpStatus.OK);
 	}

@@ -11,21 +11,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import aate.gob.pe.model.Menu;
-import aate.gob.pe.model.Rol;
-import aate.gob.pe.model.Usuario;
-import aate.gob.pe.service.IRolService;
-import aate.gob.pe.service.IUsuarioService;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AateApplicationTests {
 	
-	@Autowired
-	private IUsuarioService service;
+//	@Autowired
+//	private IUsuarioService service;
 	
-	@Autowired
-	private BCryptPasswordEncoder bcrypt;
+	//@Autowired
+	//private BCryptPasswordEncoder bcrypt;
 		
 //	@Test
 //	public void crearUsuario() {

@@ -56,7 +56,7 @@ public class loginController {
 				ResetToken token = new ResetToken();
 				token.setToken(UUID.randomUUID().toString());
 				token.setUsuario(us);
-				token.setExpiracion(10);
+				token.setExpiracion(30);
 				tokenService.guardar(token);
 				
 				Mail mail = new Mail();
@@ -65,7 +65,7 @@ public class loginController {
 				mail.setSubject("RESTABLECER CONTRASEÑA - SISAC");
 				
 				Map<String, Object> model = new HashMap<>();
-				String url = "http://localhost:4200/recuperar/" + token.getToken();
+				String url = "http://172.19.0.109/sisac/#/recuperar/" + token.getToken();
 				model.put("user", token.getUsuario().getUSULOG());
 				model.put("resetUrl", url);
 				mail.setModel(model);
