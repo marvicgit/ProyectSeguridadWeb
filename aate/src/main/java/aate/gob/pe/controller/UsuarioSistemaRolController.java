@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import aate.gob.pe.DTO.RolMenuFuncDTO;
 import aate.gob.pe.DTO.UsuarioSistemaRolDTO;
 import aate.gob.pe.exception.ModeloNotFoundException;
 import aate.gob.pe.model.UserSisRolFuncionalidad;
+import aate.gob.pe.service.ISisRolFuncionalidadService;
 import aate.gob.pe.service.IUserSisRolFuncionalidadService;
 
 @RestController
@@ -22,6 +24,9 @@ public class UsuarioSistemaRolController {
 
 	@Autowired
 	private IUserSisRolFuncionalidadService service;	
+	
+	@Autowired
+    private ISisRolFuncionalidadService eservice;
 	
 	@GetMapping
 	public ResponseEntity<List<UserSisRolFuncionalidad>> listar()
@@ -51,5 +56,17 @@ public class UsuarioSistemaRolController {
 		 UserSisRolFuncionalidad rpta = service.registrar(ususisrol); 
 		 return new ResponseEntity<UserSisRolFuncionalidad>(rpta, HttpStatus.CREATED); 
 	 }
+	 
+		@PostMapping(value = "/permisos")
+	    public ResponseEntity <RolMenuFuncDTO>acceso(@RequestBody RolMenuFuncDTO entidad)
+	    {
+	          RolMenuFuncDTO beEntidad = eservice.obtenerAcceso(entidad.getSissig(), entidad.getUsulog());
+	          if(beEntidad== null)
+	          {
+	                 throw new ModeloNotFoundException("Usuario no registrado");
+	          }
+	          
+	          return new ResponseEntity<RolMenuFuncDTO>(beEntidad, HttpStatus.OK);
+	    }
 	
 }

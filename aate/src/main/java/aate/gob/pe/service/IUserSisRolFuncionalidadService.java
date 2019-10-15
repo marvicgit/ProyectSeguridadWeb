@@ -12,5 +12,6 @@ import aate.gob.pe.model.UserSisRolFuncionalidad;
 public interface IUserSisRolFuncionalidadService extends ICrud<UserSisRolFuncionalidad>{
 	List<UsuarioSistemaRolDTO> listarUsuarioSistemaRol();
 	long existeUsuario(Integer usucod);
+	long existeUsuarioSistema(Integer siscod, Integer usucod);
 	long existeSistema(Integer siscod);
 }

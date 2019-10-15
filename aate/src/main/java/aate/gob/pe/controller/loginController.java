@@ -42,9 +42,6 @@ public class loginController {
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
 	
-	@Autowired
-    private ISisRolFuncionalidadService eservice;
-	
 
 	@PostMapping(value = "/enviarCorreo", consumes = MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<Integer> enviarCorreo(@RequestBody String username) {
@@ -124,17 +121,5 @@ public class loginController {
 		}
 		return new ResponseEntity<Integer>(rpta, HttpStatus.OK);
 	}
-
-	@PostMapping(value = "/permisos")
-    public ResponseEntity <RolMenuFuncDTO>acceso(@RequestBody RolMenuFuncDTO entidad)
-    {
-          RolMenuFuncDTO beEntidad = eservice.obtenerAcceso(entidad.getSissig(), entidad.getUsulog());
-          if(beEntidad== null)
-          {
-                 throw new ModeloNotFoundException("Usuario no registrado");
-          }
-          
-          return new ResponseEntity<RolMenuFuncDTO>(beEntidad, HttpStatus.OK);
-    }
 
 }

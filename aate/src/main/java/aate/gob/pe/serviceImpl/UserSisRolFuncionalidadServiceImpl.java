@@ -65,4 +65,10 @@ public class UserSisRolFuncionalidadServiceImpl implements IUserSisRolFuncionali
 		return repo.existeSistema(siscod);
 	}
 
+	@Override
+	public long existeUsuarioSistema(Integer siscod, Integer usucod) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

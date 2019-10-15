@@ -22,6 +22,9 @@ public interface IUserSisRolFuncionalidadRepo extends JpaRepository<UserSisRolFu
 	@Query(value ="select count(usrf) from UserSisRolFuncionalidad usrf join Sistema s on s.SISCOD = usrf.SISCOD join usrf.usuario u join usrf.rol r where s.SISCOD = :siscod") 
 	long existeSistema(@Param("siscod") Integer siscod);
 	
+	@Query(value ="select count(usrf) from UserSisRolFuncionalidad usrf join Sistema s on s.SISCOD = usrf.SISCOD join usrf.usuario u join usrf.rol r where s.SISCOD = :siscod and u.USUCOD = :usucod") 
+	long existeUsuarioSistema(@Param("siscod") Integer siscod, @Param("usucod") Integer usucod);
+	
 	@Query(value ="select count(usrf) from UserSisRolFuncionalidad usrf join Sistema s on s.SISCOD = usrf.SISCOD join usrf.usuario u join usrf.rol r where s.SISCOD = :siscod") 
 	long existeRolMenu(@Param("siscod") Integer siscod);
 	

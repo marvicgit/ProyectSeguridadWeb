@@ -18,6 +18,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -28,6 +29,7 @@ import aate.gob.pe.model.Rol;
 import aate.gob.pe.model.Sistema;
 import aate.gob.pe.model.Usuario;
 import aate.gob.pe.repo.ISistemaRepo;
+import aate.gob.pe.repo.IUserSisRolFuncionalidadRepo;
 import aate.gob.pe.repo.IUsuarioRepo;
 
 @Component
@@ -37,6 +39,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	private IUsuarioRepo repoUser;
 	@Autowired
 	private ISistemaRepo repoSis;
+	@Autowired
+	private IUserSisRolFuncionalidadRepo repoUsuSis;
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
 	
@@ -53,32 +57,36 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         		if(checkPass(password, user.getUSUPAS())) {
         			 String clientId = getClientId();
         	            if(clientId == "") {
-        	            	 throw new BadCredentialsException("Authentication Failed!!!");
+        	            	 throw new BadCredentialsException("Autenticación fallida!!!");
         	            	 
         	            } else {
         	            	Sistema sis = repoSis.siglaFindAll(clientId);
         	            	if(sis != null) {
-        	            	List<GrantedAuthority> authorities = new ArrayList<>();
-        	            	List<Rol> userRoles = repoUser.getUserRoleDetails(userName, clientId);
-        	            	userRoles.forEach( role -> {
-        	    			authorities.add(new SimpleGrantedAuthority(role.getROLSIG()));
-        	            	});
-        	                
-        	                Authentication token =  new UsernamePasswordAuthenticationToken(userName, password, authorities);
-        	                return token;
+        	            		if(repoUsuSis.existeUsuarioSistema(sis.getSISCOD(), user.getUSUCOD()) > 0) {
+	        	            	List<GrantedAuthority> authorities = new ArrayList<>();
+	        	            	List<Rol> userRoles = repoUser.getUserRoleDetails(userName, clientId);
+	        	            	userRoles.forEach( role -> {
+	        	    			authorities.add(new SimpleGrantedAuthority(role.getROLSIG()));
+	        	            	});
+	        	                
+	        	                Authentication token =  new UsernamePasswordAuthenticationToken(userName, password, authorities);
+	        	                return token;
+        	            		} else {
+        	            			throw new UsernameNotFoundException("Autenticación fallida!!!");
+        	            		}
         	            	} else {
-        	            		throw new BadCredentialsException("sistema Incorrecto!!!");
+        	            		throw new UsernameNotFoundException("Autenticación fallida!!!");
         	            	}
         	            }
         		} else {
-        			throw new BadCredentialsException("Datos no encontrados!!!");
+        			throw new UsernameNotFoundException("Autenticación fallida!!!");
         		}
         	} else {
-        		throw new BadCredentialsException("Datos no encontrados!!!");
+        		throw new UsernameNotFoundException("Autenticación fallida!!!");
         	}
            
         } else {
-        	throw new BadCredentialsException("Ingreses sus credenciales!!!");
+        	throw new UsernameNotFoundException("Autenticación fallida!!!");
         }
     }
     
