@@ -29,7 +29,7 @@ public class Rol {
 	private String ROLDES;
 	@Column(name = "ROLSIG", nullable = true, length = 20)
 	private String ROLSIG;
-	@Column(name = "USUREG", nullable = true,length = 30)
+	@Column(name = "USUREG", nullable = true,length = 30, unique = true)
 	private String USUREG;
 	@Column(name = "FECREG", nullable = true)
 	private LocalDate FECREG = LocalDate.now();

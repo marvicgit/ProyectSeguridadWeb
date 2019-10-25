@@ -26,8 +26,8 @@ public interface ISisRolFuncionalidadRepo extends JpaRepository<SisRolFuncionali
       @Query(value ="select distinct new aate.gob.pe.DTO.MenuDTO( m.MENCOD,m.MENNOM, m.MENORD, m.MENICO ,m.MENRUT,m.padre.MENCOD) from UserSisRolFuncionalidad usrf inner join usrf.rol r inner join RolMenu rm on rm.rol = r and rm.SISCOD = usrf.SISCOD inner join rm.menu m inner join m.sistema s inner join usrf.usuario u where s.SISSIG = :vSissig and u.USULOG = :vUsulog ORDER BY m.MENORD ASC")
       List<MenuDTO>listaMenu(@Param("vSissig") String vSissig, @Param("vUsulog") String  vUsulog);
     
-      @Query(value ="select new aate.gob.pe.DTO.FuncionalidadDTO(f.FUNNOM, TRIM(f.FUNSIG) ) from UserSisRolFuncionalidad usrf inner join usrf.rol r inner join SisRolFuncionalidad srf on srf.rol = r inner join srf.funcionalidad f inner join usrf.usuario u inner join Sistema s on s.SISCOD = usrf.SISCOD where s.SISSIG = :vSissig and u.USULOG = :vUsulog ")
-      List<FuncionalidadDTO>listaFuncionalidad(@Param("vSissig") String vSissig, @Param("vUsulog") String  vUsulog);
+      @Query(value ="select distinct new aate.gob.pe.DTO.FuncionalidadDTO(TRIM(f.FUNNOM), TRIM(f.FUNSIG)) from UserSisRolFuncionalidad usrf inner join usrf.rol r inner join SisRolFuncionalidad srf on srf.rol = r inner join srf.funcionalidad f inner join usrf.usuario u inner join Sistema s on s.SISCOD = usrf.SISCOD where s.SISSIG = :vSissig and u.USULOG = :vUsulog and r.ROLSIG = :vRolsig")
+      List<FuncionalidadDTO>listaFuncionalidad(@Param("vSissig") String vSissig, @Param("vUsulog") String  vUsulog, @Param("vRolsig") String  vRolsig);
       
       @Query(value="select distinct new aate.gob.pe.DTO.RolMenuFuncDTO(s.SISSIG, u.USULOG, u.USUCOD) from UserSisRolFuncionalidad usrf inner join usrf.usuario u inner join Sistema s on s.SISCOD = usrf.SISCOD where s.SISSIG = :vSissig and u.USULOG = :vUsulog")
       RolMenuFuncDTO ObtenerAcceso(@Param("vSissig") String vSissig, @Param("vUsulog") String  vUsulog);

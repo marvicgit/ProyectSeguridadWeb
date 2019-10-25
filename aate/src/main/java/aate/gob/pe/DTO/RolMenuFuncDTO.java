@@ -21,9 +21,7 @@ public class RolMenuFuncDTO {
 		this.usucod = usucod;
 
 	}
-	
-	
-	
+
 	public String getSissig() {
 		return sissig;
 	}
@@ -62,9 +60,5 @@ public class RolMenuFuncDTO {
 	public void setFuncionalidades(List<FuncionalidadDTO> funcionalidades) {
 		this.funcionalidades = funcionalidades;
 	}
-	
-	
-	
-
 
 }

@@ -25,7 +25,7 @@ public class Funcionalidad {
 	private String FUNNOM;
 	@Column(name = "FUNDES", nullable = true,length = 100)
 	private String FUNDES;
-	@Column(name = "FUNSIG", nullable = true, length = 20)
+	@Column(name = "FUNSIG", nullable = true, length = 20, unique = true)
 	private String FUNSIG;
 	@Column(name = "USUREG", nullable = true,length = 30)
 	private String USUREG;

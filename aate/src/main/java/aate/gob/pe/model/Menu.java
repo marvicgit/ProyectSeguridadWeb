@@ -43,9 +43,9 @@ public class Menu {
 	
 	@Column(name = "MENSIG", nullable = true, length = 20)
 	private String MENSIG;
-	@Column(name = "USUREG", nullable = true,length = 30)
+	@Column(name = "USUREG", nullable = true,length = 30, unique = true)
 	private String USUREG;
-	@Column(name = "FECREG", nullable = true)
+	@Column(name = "FECREG", nullable = true,length = 30)
 	private LocalDate FECREG = LocalDate.now();
 	@Column(name = "USUMOD", nullable = true, length = 30)
 	private String USUMOD;

@@ -8,10 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.approval.ApprovalStore;
+import org.springframework.security.oauth2.provider.approval.TokenApprovalStore;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
@@ -40,6 +45,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Autowired
 	private TokenStore tokenStore;
+	
+	@Autowired	
+	private UserDetailsService userDetailsService;
 
 	@Autowired
 	private JwtAccessTokenConverter accessTokenConverter;
@@ -48,14 +56,22 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	private AuthenticationManager authenticationManager;	
 	
 	@Autowired
+    private BCryptPasswordEncoder bcrypt;
+	
+	@Autowired
 	private DataSource dataSource;
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
 		configurer.jdbc(dataSource);
-		/*configurer.inMemory().withClient(clientId).secret(bcrypt.encode(clientSecret)).authorizedGrantTypes(grantType)
-		.scopes(scopeRead, scopeWrite).resourceIds(resourceIds).accessTokenValiditySeconds(100)
-		.refreshTokenValiditySeconds(0);	*/
+		/*configurer.inMemory()
+		.withClient(clientId)
+		.secret(bcrypt.encode(clientSecret))
+		.authorizedGrantTypes("password", "refresh_token")
+		.scopes(scopeRead, scopeWrite)
+		.resourceIds(resourceIds)
+		.accessTokenValiditySeconds(60)
+		.refreshTokenValiditySeconds(120);	*/
 	}
 
 	@Override
@@ -63,8 +79,17 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
 		enhancerChain.setTokenEnhancers(Arrays.asList(accessTokenConverter));
 		endpoints.tokenStore(tokenStore).accessTokenConverter(accessTokenConverter).tokenEnhancer(enhancerChain)
-				.authenticationManager(authenticationManager);
+				.authenticationManager(authenticationManager)
+				.userDetailsService(userDetailsService);
 	}
 
+	@Override
+	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+		security
+        .tokenKeyAccess("permitAll()")
+        .checkTokenAccess("isAuthenticated()")
+        .allowFormAuthenticationForClients();
+	}
+	
 }
 

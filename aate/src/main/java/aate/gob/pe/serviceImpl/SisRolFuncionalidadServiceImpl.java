@@ -93,7 +93,7 @@ public class SisRolFuncionalidadServiceImpl implements ISisRolFuncionalidadServi
           try {
                  entidad.setRoles(repo.listaRol(vSissig, vUsulog));
                  entidad.setMenus(repo.listaMenu(vSissig, vUsulog));
-                 entidad.setFuncionalidades(repo.listaFuncionalidad(vSissig, vUsulog));
+                 entidad.setFuncionalidades(repo.listaFuncionalidad(vSissig, vUsulog, entidad.getRoles().get(0).getROLSIG()));
                  RolMenuFuncDTO beEntidad = new RolMenuFuncDTO();
                  beEntidad = repo.ObtenerAcceso(vSissig, vUsulog);
                  entidad.setSissig(beEntidad.getSissig());
